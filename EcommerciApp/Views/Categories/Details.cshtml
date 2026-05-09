@@ -1,0 +1,37 @@
+﻿@model EcommerciApp.Models.Categorie
+
+@{
+    ViewData["Title"] = "Détails Catégorie";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg">
+                <div class="card-header bg-info text-white">
+                    <h4 class="mb-0"><i class="bi bi-eye me-2"></i>Détails Catégorie</h4>
+                </div>
+                <div class="card-body p-4">
+
+                    <dl class="row">
+                        <dt class="col-sm-4 fw-bold">Nom</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Nom)</dd>
+
+                        <dt class="col-sm-4 fw-bold">Description</dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Description)</dd>
+                    </dl>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                        <a asp-action="Index" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left me-2"></i>Retour
+                        </a>
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">
+                            <i class="bi bi-pencil me-2"></i>Modifier
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

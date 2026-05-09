@@ -1,0 +1,89 @@
+﻿@{
+    ViewData["Title"] = "Donner un avis";
+}
+
+<style>
+    .star-rating {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+        gap: 8px;
+    }
+
+        .star-rating input {
+            display: none;
+        }
+
+        .star-rating label {
+            font-size: 2.5rem;
+            color: #e2e8f0;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+            .star-rating input:checked ~ label,
+            .star-rating label:hover,
+            .star-rating label:hover ~ label {
+                color: #fbbf24;
+            }
+
+    .avis-card {
+        background: #fff;
+        border-radius: 16px;
+        border: 0.5px solid #e2e8f0;
+        padding: 2rem;
+        max-width: 560px;
+        margin: 2rem auto;
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="avis-card">
+        <h5 class="fw-bold mb-1">
+            <i class="bi bi-star-fill text-warning me-2"></i>Donner votre avis
+        </h5>
+        <p class="text-muted mb-4" style="font-size:14px;">
+            Commande #@ViewBag.CommandeId
+        </p>
+
+        <form asp-action="Donner" asp-controller="Avis" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="id" value="@ViewBag.CommandeId" />
+
+            <div class="mb-4">
+                <label class="form-label fw-semibold">Votre note</label>
+                <div class="star-rating">
+                    <input type="radio" name="note" id="star5" value="5" />
+                    <label for="star5">★</label>
+                    <input type="radio" name="note" id="star4" value="4" />
+                    <label for="star4">★</label>
+                    <input type="radio" name="note" id="star3" value="3" />
+                    <label for="star3">★</label>
+                    <input type="radio" name="note" id="star2" value="2" />
+                    <label for="star2">★</label>
+                    <input type="radio" name="note" id="star1" value="1" checked />
+                    <label for="star1">★</label>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label fw-semibold">
+                    Commentaire <span class="text-muted fw-normal">(facultatif)</span>
+                </label>
+                <textarea name="commentaire" class="form-control" rows="4"
+                          placeholder="Partagez votre expérience..."
+                          style="border-radius:12px; resize:none;"></textarea>
+            </div>
+
+            <div class="d-flex gap-2">
+                <button type="submit" class="btn btn-primary px-4" style="border-radius:10px;">
+                    <i class="bi bi-send me-2"></i>Envoyer
+                </button>
+                <a asp-controller="Commandes" asp-action="MesCommandes"
+                   class="btn btn-outline-secondary px-4" style="border-radius:10px;">
+                    Annuler
+                </a>
+            </div>
+        </form>
+    </div>
+</div>

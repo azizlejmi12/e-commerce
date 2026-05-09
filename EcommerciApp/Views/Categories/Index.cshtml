@@ -1,0 +1,86 @@
+﻿@model IEnumerable<EcommerciApp.Models.Categorie>
+
+@{
+    ViewData["Title"] = "Gestion des Catégories";
+    var colors = new[] { "#6366F1", "#10B981", "#F59E0B", "#EF4444", "#8B5CF6" };
+    int counter = 0;
+}
+
+<div class="container mt-5 text-center">
+    <div class="mb-5">
+        <h1 class="fw-bold display-5">Gestion des Catégories</h1>
+        <div class="mx-auto" style="height: 4px; width: 60px; background-color: #6366F1; border-radius: 10px;"></div>
+    </div>
+
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="text-end mb-4">
+            <a asp-action="Create" class="btn btn-dark rounded-pill shadow-sm px-4 fw-bold">
+                <i class="bi bi-plus-lg me-2"></i>Nouvelle Catégorie
+            </a>
+        </div>
+    }
+
+    <div class="row justify-content-center">
+        @foreach (var item in Model)
+        {
+            var currentColor = colors[counter % colors.Length];
+            counter++;
+
+            string initial = !string.IsNullOrWhiteSpace(item.Nom) ? item.Nom.Substring(0, 1).ToUpper() : "?";
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 border-0 shadow-lg rounded-4 category-card text-center py-5 px-3">
+
+                    <div class="mb-4 d-flex justify-content-center">
+                        <div class="rounded-circle d-flex align-items-center justify-content-center shadow-sm"
+                             style="width: 80px; height: 80px; background-color: @currentColor; color: white;">
+                            <span class="display-4 fw-bold" style="line-height: 1;">@initial</span>
+                        </div>
+                    </div>
+
+                    <h3 class="fw-bold mb-2">@item.Nom</h3>
+
+                    <p class="text-muted mb-4 small">
+                        @(item.Description?.Length > 70 ? item.Description.Substring(0, 70) + "..." : item.Description)
+                    </p>
+
+                    <div class="px-4 mt-auto">
+                        <a asp-controller="Produits" asp-action="Index" asp-route-categorieId="@item.Id"
+                           class="btn w-100 py-2 fw-bold text-white shadow"
+                           style="background-color: @currentColor; border: none; border-radius: 12px;">
+                            Explorer
+                        </a>
+                    </div>
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <div class="card-footer bg-transparent border-0 pb-0 pt-4 text-center">
+                            <hr class="mx-4 opacity-10">
+                            <div class="d-flex justify-content-center gap-3">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="text-warning text-decoration-none small fw-bold">
+                                    Modifier
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="text-danger text-decoration-none small fw-bold">
+                                    Supprimer
+                                </a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .category-card {
+        transition: all 0.3s ease;
+        border: 1px solid rgba(0,0,0,0.05) !important;
+    }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
+        }
+</style>

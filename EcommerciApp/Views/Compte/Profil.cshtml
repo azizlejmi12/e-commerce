@@ -1,0 +1,133 @@
+﻿@model EcommerciApp.Models.Utilisateur
+
+@{
+    ViewData["Title"] = "Mon Profil";
+}
+
+<style>
+    .profil-card {
+        max-width: 600px;
+        margin: 3rem auto;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        overflow: hidden;
+    }
+
+    .profil-header {
+        background: linear-gradient(135deg, #6366f1, #8b5cf6);
+        color: white;
+        padding: 2rem;
+        text-align: center;
+    }
+
+    .profil-avatar {
+        width: 100px;
+        height: 100px;
+        background: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        font-size: 3rem;
+        color: #6366f1;
+    }
+
+    .profil-body {
+        padding: 2rem;
+    }
+
+    .info-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem 0;
+        border-bottom: 1px solid #f1f5f9;
+    }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+    .info-label {
+        color: #64748b;
+        font-weight: 500;
+    }
+
+    .info-value {
+        color: #1e293b;
+        font-weight: 600;
+    }
+
+    .role-badge {
+        display: inline-block;
+        padding: 0.25rem 1rem;
+        border-radius: 20px;
+        font-size: 0.875rem;
+        font-weight: 600;
+    }
+
+    .role-admin {
+        background: #dbeafe;
+        color: #1d4ed8;
+    }
+
+    .role-client {
+        background: #d1fae5;
+        color: #065f46;
+    }
+
+    .btn-edit {
+        background: linear-gradient(135deg, #6366f1, #8b5cf6);
+        color: white;
+        border: none;
+        padding: 0.75rem 2rem;
+        border-radius: 10px;
+        font-weight: 600;
+        width: 100%;
+        margin-top: 1.5rem;
+    }
+
+        .btn-edit:hover {
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
+        }
+</style>
+
+<div class="container">
+    <div class="profil-card">
+        <div class="profil-header">
+            <div class="profil-avatar">
+                <i class="bi bi-person"></i>
+            </div>
+            <h4 class="mb-0">@Model.Prenom @Model.Nom</h4>
+            <small>@Model.Email</small>
+        </div>
+
+        <div class="profil-body">
+            <div class="info-row">
+                <span class="info-label">Nom</span>
+                <span class="info-value">@Model.Nom</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Prénom</span>
+                <span class="info-value">@Model.Prenom</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Email</span>
+                <span class="info-value">@Model.Email</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Rôle</span>
+                <span class="role-badge @(Model.Role == "Admin" ? "role-admin" : "role-client")">
+                    @Model.Role
+                </span>
+            </div>
+
+            <a href="#" class="btn btn-edit text-center d-block text-decoration-none">
+                <i class="bi bi-pencil me-2"></i>Modifier mon profil
+            </a>
+        </div>
+    </div>
+</div>

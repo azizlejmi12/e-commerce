@@ -1,0 +1,244 @@
+﻿@{
+    ViewData["Title"] = "Connexion / Inscription";
+}
+
+<style>
+    :root {
+        --primary-color: #6366f1;
+        --secondary-color: #8b5cf6;
+    }
+
+    .auth-header {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) !important;
+        border: none;
+    }
+
+    .nav-pills .nav-link.active {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)) !important;
+        border: none;
+    }
+
+    .nav-pills .nav-link:not(.active) {
+        color: var(--primary-color);
+    }
+
+        .nav-pills .nav-link:not(.active):hover {
+            background-color: #f1f5f9;
+        }
+
+    .btn-auth {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        border: none;
+        color: white;
+        font-weight: 500;
+        padding: 0.8rem;
+        transition: all 0.3s;
+    }
+
+        .btn-auth:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
+            color: white;
+        }
+
+    .btn-success-auth {
+        background: linear-gradient(135deg, #10b981, #059669);
+        border: none;
+        color: white;
+        font-weight: 500;
+        padding: 0.8rem;
+        transition: all 0.3s;
+    }
+
+        .btn-success-auth:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(16, 185, 129, 0.4);
+            color: white;
+        }
+
+    /* Styles pour les erreurs */
+    .alert-error {
+        background: #fee2e2;
+        border-left: 4px solid #ef4444;
+        color: #991b1b;
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .input-error {
+        border-color: #ef4444 !important;
+    }
+
+        .input-error:focus {
+            box-shadow: 0 0 0 0.25rem rgba(239, 68, 68, 0.25) !important;
+        }
+
+    .text-error {
+        color: #dc2626;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0">
+                <div class="card-header auth-header text-white text-center py-4">
+                    <h3 class="mb-0"><i class="bi bi-person-circle me-2"></i>Mon Compte</h3>
+                </div>
+
+                <div class="card-body p-4">
+
+                    <!-- Onglets -->
+                    <ul class="nav nav-pills nav-justified mb-4" id="authTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active rounded-pill py-2" id="login-tab" data-bs-toggle="pill" data-bs-target="#login" type="button" role="tab">
+                                <i class="bi bi-box-arrow-in-right me-1"></i>Connexion
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link rounded-pill py-2" id="register-tab" data-bs-toggle="pill" data-bs-target="#register" type="button" role="tab">
+                                <i class="bi bi-person-plus me-1"></i>Inscription
+                            </button>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content" id="authTabContent">
+
+                        <!-- LOGIN -->
+                        <div class="tab-pane fade show active" id="login" role="tabpanel">
+                            <!-- Message d'erreur global -->
+                            @if (TempData["EmailError"] != null || TempData["PasswordError"] != null)
+                            {
+                                <div class="alert-error">
+                                    <i class="bi bi-exclamation-triangle-fill fs-5"></i>
+                                    <span>Identifiants incorrects. Veuillez vérifier vos informations.</span>
+                                </div>
+                            }
+
+                            <form asp-action="Login" asp-controller="Account" method="post">
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold text-secondary">Email</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light"><i class="bi bi-envelope text-primary"></i></span>
+                                        <input type="email" name="Email"
+                                               class="form-control form-control-lg @(TempData["EmailError"] != null ? "input-error" : "")"
+                                               placeholder="exemple@email.com"
+                                               value="@TempData["EmailValue"]"
+                                               required />
+                                    </div>
+                                    @if (TempData["EmailError"] != null)
+                                    {
+                                        <span class="text-error">
+                                            <i class="bi bi-exclamation-circle-fill"></i>
+                                            @TempData["EmailError"]
+                                        </span>
+                                    }
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold text-secondary">Mot de passe</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light"><i class="bi bi-lock text-primary"></i></span>
+                                        <input type="password" name="Password"
+                                               class="form-control form-control-lg @(TempData["PasswordError"] != null ? "input-error" : "")"
+                                               placeholder="••••••"
+                                               required />
+                                    </div>
+                                    @if (TempData["PasswordError"] != null)
+                                    {
+                                        <span class="text-error">
+                                            <i class="bi bi-exclamation-circle-fill"></i>
+                                            @TempData["PasswordError"]
+                                        </span>
+                                    }
+                                </div>
+                                <div class="mb-4 form-check">
+                                    <input type="checkbox" name="RememberMe" class="form-check-input" id="rememberMe" />
+                                    <label class="form-check-label text-secondary" for="rememberMe">Se souvenir de moi</label>
+                                </div>
+                                <button type="submit" class="btn btn-auth w-100 btn-lg rounded-pill">
+                                    <i class="bi bi-box-arrow-in-right me-2"></i>Se connecter
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- REGISTER -->
+                        <div class="tab-pane fade" id="register" role="tabpanel">
+                            @if (TempData["RegisterError"] != null)
+                            {
+                                <div class="alert-error">
+                                    <i class="bi bi-exclamation-triangle-fill fs-5"></i>
+                                    <span>@TempData["RegisterError"]</span>
+                                </div>
+                            }
+
+                            <form asp-action="Register" asp-controller="Account" method="post">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label fw-bold text-secondary">Nom</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-light"><i class="bi bi-person text-primary"></i></span>
+                                            <input type="text" name="Nom" class="form-control" placeholder="Votre nom" required />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label fw-bold text-secondary">Prénom</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-light"><i class="bi bi-person text-primary"></i></span>
+                                            <input type="text" name="Prenom" class="form-control" placeholder="Votre prénom" required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold text-secondary">Email</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light"><i class="bi bi-envelope text-primary"></i></span>
+                                        <input type="email" name="Email" class="form-control" placeholder="exemple@email.com" required />
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label fw-bold text-secondary">Mot de passe</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light"><i class="bi bi-lock text-primary"></i></span>
+                                        <input type="password" name="Password" class="form-control" placeholder="••••••" required />
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label fw-bold text-secondary">Confirmer le mot de passe</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text bg-light"><i class="bi bi-lock-fill text-primary"></i></span>
+                                        <input type="password" name="ConfirmPassword" class="form-control" placeholder="••••••" required />
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-success-auth w-100 btn-lg rounded-pill">
+                                    <i class="bi bi-person-plus me-2"></i>S'inscrire
+                                </button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('register') === '1') {
+            const registerTab = document.getElementById('register-tab');
+            if (registerTab) {
+                registerTab.click();
+            }
+        }
+    </script>
+}

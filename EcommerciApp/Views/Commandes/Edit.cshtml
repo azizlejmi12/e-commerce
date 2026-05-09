@@ -1,0 +1,66 @@
+﻿@model EcommerciApp.Models.Commande
+
+@{
+    ViewData["Title"] = "Gérer la Commande";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-header bg-primary text-white py-3 rounded-top-4">
+                    <h4 class="mb-0 text-center fw-bold">Gestion Commande #@Model.Id</h4>
+                </div>
+                <div class="card-body p-4">
+
+                    @* Rappel des infos pour l'admin *@
+                    <div class="bg-light p-3 rounded-3 mb-4">
+                        <p class="mb-1"><strong>Client :</strong> @Model.Utilisateur?.Email</p>
+                        <p class="mb-1"><strong>Téléphone :</strong> <span class="text-success fw-bold">@Model.Telephone</span></p>
+                        <p class="mb-1"><strong>Total à encaisser :</strong> <span class="text-primary fw-bold">@Model.Total.ToString("N2") DT</span></p>
+                        <p class="mb-0 text-muted small"><strong>Adresse :</strong> @Model.AdresseLivraison, @Model.Ville</p>
+                    </div>
+
+                    <form asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Id" />
+
+                        @* On garde les champs cachés pour ne pas les perdre lors du Save *@
+                        <input type="hidden" asp-for="UtilisateurId" />
+                        <input type="hidden" asp-for="DateCommande" />
+                        <input type="hidden" asp-for="Total" />
+                        <input type="hidden" asp-for="AdresseLivraison" />
+                        <input type="hidden" asp-for="Telephone" />
+                        <input type="hidden" asp-for="Ville" />
+
+                        <div class="mb-4">
+                            <label class="form-label fw-bold"><i class="bi bi-gear-fill me-2"></i>Changer le Statut</label>
+                            <select asp-for="Statut" class="form-select form-select-lg border-primary shadow-sm">
+                                <option value="En attente">🟡 En attente</option>
+                                <option value="Acceptee">🔵 Acceptée (Préparation)</option>
+                                <option value="Livree">🟢 Livrée (Payée)</option>
+                                <option value="Annulee">🔴 Annulée</option>
+                            </select>
+                            <span asp-validation-for="Statut" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary py-2 fw-bold rounded-pill shadow">
+                                <i class="bi bi-check2-circle me-2"></i>Mettre à jour la commande
+                            </button>
+                            <a asp-action="Index" class="btn btn-outline-secondary rounded-pill">
+                                Annuler
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

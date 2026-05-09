@@ -1,0 +1,219 @@
+﻿@model IEnumerable<EcommerciApp.Models.Produit>
+
+@{
+    ViewData["Title"] = "Boutique";
+    var filtrerNom = ViewData["FiltrerNom"] as string;
+    var categories = ViewBag.Categories as List<EcommerciApp.Models.Categorie>;
+}
+<style>
+    :root {
+        --main-blue: #6366F1;
+        --main-dark: #4F46E5;
+    }
+
+    .custom-text-primary {
+        color: var(--main-blue) !important;
+    }
+
+    .custom-btn-primary {
+        background-color: var(--main-blue) !important;
+        border: none;
+        color: white !important;
+        transition: all 0.3s;
+        border-radius: 50px;
+    }
+
+        .custom-btn-primary:hover {
+            background-color: var(--main-dark) !important;
+            transform: scale(1.02);
+        }
+
+    .product-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+        }
+
+    .form-control:focus, .form-select:focus {
+        box-shadow: none;
+        border: 1px solid var(--main-blue);
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="fw-bold">
+                <i class="bi bi-grid-fill me-3 custom-text-primary"></i>
+                @(string.IsNullOrEmpty(filtrerNom) ? "Nos Produits" : filtrerNom)
+            </h1>
+            <p class="text-muted mb-0">Découvrez notre sélection exclusive</p>
+        </div>
+
+        @if (User.IsInRole("Admin"))
+        {
+            <a asp-action="Create" class="btn custom-btn-primary shadow-sm">
+                <i class="bi bi-plus-lg me-2"></i>Nouveau Produit
+            </a>
+        }
+    </div>
+
+    <!-- FILTRES AMÉLIORÉS -->
+    <div class="card mb-4 border-0 shadow-sm p-3 bg-light rounded-4">
+        <form asp-action="Index" method="get" class="row g-3 align-items-end">
+            <!-- Recherche -->
+            <div class="col-md-3">
+                <label class="form-label fw-bold small text-secondary">Rechercher</label>
+                <div class="input-group">
+                    <span class="input-group-text border-0 bg-white"><i class="bi bi-search custom-text-primary"></i></span>
+                    <input type="text" name="searchString" class="form-control border-0"
+                           placeholder="Nom du produit..." value="@ViewBag.SearchString">
+                </div>
+            </div>
+
+            <!-- Catégorie -->
+            <div class="col-md-2">
+                <label class="form-label fw-bold small text-secondary">Catégorie</label>
+                <select name="categorieId" class="form-select border-0">
+                    <option value="">Toutes</option>
+                    @foreach (var cat in categories)
+                    {
+                        <option value="@cat.Id" selected="@(ViewBag.CategorieId == cat.Id)">@cat.Nom</option>
+                    }
+                </select>
+            </div>
+
+            <!-- Prix Min -->
+            <div class="col-md-2">
+                <label class="form-label fw-bold small text-secondary">Prix min (DT)</label>
+                <input type="number" name="prixMin" class="form-control border-0"
+                       placeholder="0" value="@ViewBag.PrixMin" min="0" step="0.01">
+            </div>
+
+            <!-- Prix Max -->
+            <div class="col-md-2">
+                <label class="form-label fw-bold small text-secondary">Prix max (DT)</label>
+                <input type="number" name="prixMax" class="form-control border-0"
+                       placeholder="Max" value="@ViewBag.PrixMax" min="0" step="0.01">
+            </div>
+
+            <!-- Tri -->
+            <div class="col-md-2">
+                <label class="form-label fw-bold small text-secondary">Trier par</label>
+                <select name="sortOrder" class="form-select border-0">
+                    <option value="">Nouveautés</option>
+                    <option value="prix_asc" selected="@(ViewBag.SortOrder == "prix_asc")">Prix: croissant</option>
+                    <option value="prix_desc" selected="@(ViewBag.SortOrder == "prix_desc")">Prix: décroissant</option>
+                    <option value="nom_asc" selected="@(ViewBag.SortOrder == "nom_asc")">Nom: A-Z</option>
+                    <option value="nom_desc" selected="@(ViewBag.SortOrder == "nom_desc")">Nom: Z-A</option>
+                    <option value="stock" selected="@(ViewBag.SortOrder == "stock")">Disponibilité</option>
+                </select>
+            </div>
+
+            <!-- Boutons -->
+            <div class="col-md-1 d-flex gap-2">
+                <button type="submit" class="btn custom-btn-primary w-100" title="Filtrer">
+                    <i class="bi bi-funnel"></i>
+                </button>
+                <a asp-action="Index" class="btn btn-outline-secondary w-100" title="Réinitialiser">
+                    <i class="bi bi-x-lg"></i>
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <!-- AUCUN RÉSULTAT -->
+    @if (!Model.Any())
+    {
+        <div class="text-center py-5">
+            <i class="bi bi-search display-1 text-muted"></i>
+            <h4 class="mt-3">Aucun produit trouvé</h4>
+            <p class="text-muted">Essayez d'autres critères de recherche</p>
+            <a asp-action="Index" class="btn custom-btn-primary mt-2">Voir tous les produits</a>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card h-100 border-0 shadow-sm product-card rounded-4 overflow-hidden">
+                        <div class="position-relative">
+                            <img src="@(string.IsNullOrEmpty(item.ImageUrl) ? "https://via.placeholder.com/300x200?text=Produit" : item.ImageUrl)"
+                                 class="card-img-top" alt="@item.Nom" style="height: 220px; object-fit: cover;">
+
+                            <div class="position-absolute top-0 start-0 m-2">
+                                @if (item.Stock > 10)
+                                {
+                                    <span class="badge bg-success rounded-pill shadow-sm">En stock</span>
+                                }
+                                else if (item.Stock > 0)
+                                {
+                                    <span class="badge bg-warning text-dark rounded-pill shadow-sm">Stock limité</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger rounded-pill shadow-sm">Rupture</span>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="card-body d-flex flex-column p-3">
+                            <small class="custom-text-primary fw-bold text-uppercase mb-1" style="font-size: 0.7rem;">
+                                @item.Categorie?.Nom
+                            </small>
+                            <h5 class="card-title fw-bold text-dark mb-2">@item.Nom</h5>
+                            <p class="card-text text-muted small flex-grow-1">
+                                @(item.Description?.Length > 50 ? item.Description.Substring(0, 50) + "..." : item.Description)
+                            </p>
+
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <span class="h5 fw-bold mb-0 custom-text-primary">@item.Prix.ToString("F2") DT</span>
+
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <small class="text-muted">
+                                        <i class="bi bi-box me-1"></i> Stock: <strong>@item.Stock</strong>
+                                    </small>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="card-footer bg-white border-0 pb-3 pt-0">
+                            <div class="d-grid gap-2">
+                                <a asp-action="Details" asp-route-id="@item.Id"
+                                   class="btn btn-outline-secondary btn-sm rounded-pill fw-bold py-2">
+                                    <i class="bi bi-eye me-1"></i>Voir détails
+                                </a>
+
+                                <form asp-controller="Paniers" asp-action="Ajouter" asp-route-id="@item.Id" method="post">
+                                    <button type="submit" class="btn custom-btn-primary w-100">
+                                        <i class="bi bi-cart-plus me-1"></i> Ajouter au panier
+                                    </button>
+                                </form>
+
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <div class="d-flex gap-2 mt-1">
+                                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm flex-fill rounded-pill">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
+                                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm flex-fill rounded-pill">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+}

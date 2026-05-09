@@ -1,0 +1,92 @@
+﻿@model EcommerciApp.Models.Utilisateur
+
+@{
+    ViewData["Title"] = "Mes Points de Fidélité";
+    var niveau = ViewBag.Niveau;
+    var reduction = ViewBag.Reduction;
+}
+
+<style>
+    .fidelite-card {
+        max-width: 600px;
+        margin: 3rem auto;
+        background: linear-gradient(135deg, #fbbf24, #f59e0b);
+        border-radius: 20px;
+        padding: 3rem;
+        color: white;
+        text-align: center;
+    }
+
+    .points-big {
+        font-size: 4rem;
+        font-weight: 800;
+    }
+
+    .niveau-badge {
+        display: inline-block;
+        padding: 0.5rem 1.5rem;
+        border-radius: 50px;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-top: 1rem;
+    }
+
+    .niveau-Bronze {
+        background: #8B4513;
+    }
+
+    .niveau-Argent {
+        background: #C0C0C0;
+        color: #333;
+    }
+
+    .niveau-Or {
+        background: #FFD700;
+        color: #333;
+    }
+
+    .niveau-Platine {
+        background: #E5E4E2;
+        color: #333;
+    }
+
+    .info-box {
+        background: white;
+        border-radius: 16px;
+        padding: 2rem;
+        margin-top: 2rem;
+        color: #333;
+    }
+</style>
+
+<div class="container">
+    <div class="fidelite-card">
+        <i class="bi bi-gift display-1"></i>
+        <div class="points-big">@Model.PointsFidelite</div>
+        <p>points disponibles</p>
+
+        <span class="niveau-badge niveau-@niveau">@niveau</span>
+
+        <div class="info-box">
+            <h5 class="fw-bold"><i class="bi bi-ticket-perforated me-2"></i>Votre réduction</h5>
+            <p class="mb-0">Vous pouvez économiser <strong>@reduction.ToString("N2") DT</strong></p>
+            <small class="text-muted">100 points = 5 DT de réduction</small>
+
+            <hr>
+
+            <p class="mb-0"><strong>@Model.TotalPointsGagnes</strong> points cumulés au total</p>
+            <small class="text-muted">
+                @{
+                    var prochain = niveau switch
+                    {
+                        "Bronze" => "Argent (500 pts)",
+                        "Argent" => "Or (2000 pts)",
+                        "Or" => "Platine (5000 pts)",
+                        _ => "Maximum atteint !"
+                    };
+                }
+                Prochain niveau : @prochain
+            </small>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+﻿@model EcommerciApp.Models.Commande
+
+<div class="container mt-5 text-center">
+    <div class="card border-0 shadow p-5 rounded-4">
+        <i class="bi bi-check-circle-fill display-1 text-success mb-4"></i>
+        <h2 class="fw-bold">Merci pour votre commande !</h2>
+        <p class="lead text-muted">Votre commande n°<strong>@Model.Id</strong> a été validée avec succès.</p>
+        <hr class="my-4" style="max-width: 200px; margin: auto;">
+        <p>Montant total : <strong>@Model.Total.ToString("N2") DT</strong></p>
+        <div class="mt-4">
+            <a href="/" class="btn btn-primary rounded-pill px-4">Retour à la boutique</a>
+            @* Dans ta vue de confirmation *@
+            <a asp-controller="Commandes" asp-action="MesCommandes" class="btn btn-outline-secondary rounded-pill px-4">
+                Mes commandes
+            </a>
+        </div>
+    </div>
+</div>

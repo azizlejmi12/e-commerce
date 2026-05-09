@@ -1,0 +1,131 @@
+﻿@model IEnumerable<EcommerciApp.Models.Commande>
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<EcommerciApp.Models.Utilisateur> UserManager
+@inject EcommerciApp.Data.ApplicationDbContext DbContext
+
+@{
+    ViewData["Title"] = "Mes Commandes";
+    var userId = UserManager.GetUserId(User);
+    var avisDejaDeposes = DbContext.Avis
+        .Where(a => a.UtilisateurId == userId)
+        .Select(a => a.CommandeId)
+        .ToList();
+}
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold"><i class="bi bi-bag-check me-2"></i>Mes Commandes</h2>
+        <a href="/" class="btn btn-outline-primary rounded-pill btn-sm">Retour à la boutique</a>
+    </div>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success rounded-3 border-0 shadow-sm mb-4">
+            <i class="bi bi-check-circle me-2"></i>@TempData["Success"]
+        </div>
+    }
+
+    @if (!Model.Any())
+    {
+        <div class="card border-0 shadow-sm rounded-4 py-5 text-center">
+            <i class="bi bi-box-seam display-1 text-muted mb-3"></i>
+            <h3 class="fw-bold">Vous n'avez pas encore de commande</h3>
+            <p class="text-muted">Vos achats apparaîtront ici une fois validés.</p>
+        </div>
+    }
+    else
+    {
+        <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+            <table class="table align-middle mb-0">
+                <thead class="bg-light">
+                    <tr>
+                        <th class="ps-4">Date</th>
+                        <th>Total</th>
+                        <th>Statut</th>
+                        <th>Ville</th>
+                        <th class="text-end pe-4">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="ps-4">
+                                @item.DateCommande.ToString("dd/MM/yyyy HH:mm")
+                            </td>
+                            <td class="fw-bold">@item.Total.ToString("N2") DT</td>
+                            <td>
+                                @{
+                                    var badgeClass = item.Statut switch
+                                    {
+                                        "En attente" => "bg-warning text-dark",
+                                        "Acceptee" => "bg-info text-white",
+                                        "Livree" => "bg-success text-white",
+                                        "Annulée" => "bg-danger text-white",
+                                        "Annulee" => "bg-danger text-white",
+                                        _ => "bg-secondary text-white"
+                                    };
+                                }
+                                <span class="badge @badgeClass rounded-pill px-3">@item.Statut</span>
+                            </td>
+                            <td>@item.Ville</td>
+                            <td class="text-end pe-4">
+                                <div class="d-flex justify-content-end align-items-center gap-2 flex-wrap">
+
+                                    @{
+                                        var diff = DateTime.Now - item.DateCommande;
+                                        double heuresRestantes = 24 - diff.TotalHours;
+                                        bool peutAnnuler = (item.Statut == "En attente" || item.Statut == "Acceptee")
+                                        && heuresRestantes > 0;
+                                    }
+
+                                    @if (peutAnnuler)
+                                    {
+                                        <form asp-action="AnnulerCommande" asp-route-id="@item.Id" method="post"
+                                              onsubmit="return confirm('Voulez-vous vraiment annuler cette commande ?');">
+                                            @Html.AntiForgeryToken()
+                                            <button type="submit" class="btn btn-sm btn-outline-danger rounded-pill px-3">
+                                                <i class="bi bi-x-circle me-1"></i> Annuler
+                                                <span class="badge bg-danger ms-1" style="font-size: 0.6rem;">
+                                                    @Math.Max(0, Math.Floor(heuresRestantes))h rest.
+                                                </span>
+                                            </button>
+                                        </form>
+                                    }
+                                    else if (item.Statut != "Livree" && item.Statut != "Annulée" && item.Statut != "Annulee")
+                                    {
+                                        <span class="text-muted small">
+                                            <i class="bi bi-lock-fill"></i> Délai expiré
+                                        </span>
+                                    }
+
+                                    @if (item.Statut == "Livree" && !avisDejaDeposes.Contains(item.Id))
+                                    {
+                                        <a asp-controller="Avis" asp-action="Donner"
+                                           asp-route-Id="@item.Id"
+                                           class="btn btn-sm btn-outline-warning rounded-pill px-3">
+                                            <i class="bi bi-star me-1"></i> Donner un avis
+                                        </a>
+                                    }
+                                    else if (item.Statut == "Livree" && avisDejaDeposes.Contains(item.Id))
+                                    {
+                                        <span class="badge rounded-pill px-3 py-2"
+                                              style="background:#d1fae5; color:#065f46; font-size:12px;">
+                                            <i class="bi bi-check-circle me-1"></i> Avis déposé
+                                        </span>
+                                    }
+
+                                    <a asp-action="Details" asp-route-id="@item.Id"
+                                       class="btn btn-sm btn-light border rounded-pill">
+                                        <i class="bi bi-eye me-1"></i> Détails
+                                    </a>
+
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

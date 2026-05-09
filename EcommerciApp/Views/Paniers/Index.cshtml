@@ -1,0 +1,172 @@
+﻿@model IEnumerable<EcommerciApp.Models.LignePanier>
+
+@{
+    ViewData["Title"] = "Mon Panier";
+    decimal totalGeneral = Model.Sum(l => (l.PrixUnitaire ?? 0) * l.Quantite);
+    bool alerteStockGeneral = Model.Any(l => l.Produit != null && l.Produit.Stock < l.Quantite);
+}
+
+<div class="container mt-5">
+    <!-- ✅ MESSAGE INFO : Panier vidé après 7 jours -->
+    @if (TempData["Info"] != null)
+    {
+        <div class="alert alert-info border-0 shadow-sm rounded-4 mb-4 animate__animated animate__fadeIn">
+            <div class="d-flex align-items-center">
+                <i class="bi bi-info-circle-fill fs-4 me-3"></i>
+                <div>
+                    <h6 class="mb-0 fw-bold">Information</h6>
+                    <small>@TempData["Info"]</small>
+                </div>
+            </div>
+        </div>
+    }
+
+    <!-- Message Erreur -->
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger border-0 shadow-sm rounded-4 mb-4 animate__animated animate__fadeIn">
+            <div class="d-flex align-items-center">
+                <i class="bi bi-exclamation-triangle-fill fs-4 me-3"></i>
+                <div>
+                    <h6 class="mb-0 fw-bold">Action impossible</h6>
+                    <small>@TempData["Error"]</small>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold"><i class="bi bi-cart3 me-2 text-primary"></i>Mon Panier</h2>
+        <a href="/" class="btn btn-outline-secondary rounded-pill btn-sm px-3">
+            <i class="bi bi-arrow-left me-2"></i>Continuer mes achats
+        </a>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="card border-0 shadow-sm rounded-4 py-5 text-center">
+            <i class="bi bi-bag-x display-1 text-muted mb-3"></i>
+            <h3 class="fw-bold text-muted">Votre panier est vide</h3>
+            <div class="d-flex justify-content-center">
+                <a href="/" class="btn btn-primary rounded-pill px-5 py-2 mt-3 shadow-sm">Voir les produits</a>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden mb-4">
+                    <div class="table-responsive">
+                        <table class="table align-middle mb-0">
+                            <thead class="bg-light">
+                                <tr class="small text-muted text-uppercase fw-bold">
+                                    <th class="ps-4 py-3">Produit</th>
+                                    <th>Prix</th>
+                                    <th style="width: 160px;">Quantité</th>
+                                    <th>Sous-total</th>
+                                    <th class="text-end pe-4">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    decimal prixVal = item.PrixUnitaire ?? 0;
+                                    decimal sousTotal = prixVal * item.Quantite;
+                                    bool stockInsuffisant = item.Produit != null && item.Produit.Stock < item.Quantite;
+
+                                    <tr class="@(stockInsuffisant ? "table-danger-light" : "")">
+                                        <td class="ps-4 py-3">
+                                            <div class="d-flex flex-column">
+                                                <h6 class="fw-bold mb-0">@item.Produit?.Nom</h6>
+
+                                                @if (User.IsInRole("Admin"))
+                                                {
+                                                    <small class="text-secondary fw-bold mt-1">
+                                                        <i class="bi bi-box me-1"></i> @item.Produit?.Stock
+                                                    </small>
+                                                }
+
+                                                @if (stockInsuffisant)
+                                                {
+                                                    <small class="text-danger fw-bold"><i class="bi bi-exclamation-circle-fill me-1"></i> Quantité indisponible</small>
+                                                }
+                                            </div>
+                                        </td>
+                                        <td>@prixVal.ToString("N2") DT</td>
+                                        <td>
+                                            <div class="input-group input-group-sm border rounded-pill overflow-hidden" style="width: 110px;">
+                                                <form asp-controller="Paniers" asp-action="Moins" asp-route-id="@item.ProduitId" method="post">
+                                                    @Html.AntiForgeryToken()
+                                                    <button type="submit" class="btn btn-light border-0 px-2 text-primary"><i class="bi bi-dash-lg"></i></button>
+                                                </form>
+
+                                                <span class="fw-bold px-2">@item.Quantite</span>
+
+                                                <form asp-controller="Paniers" asp-action="Plus" asp-route-id="@item.ProduitId" method="post">
+                                                    @Html.AntiForgeryToken()
+                                                    <button type="submit" class="btn btn-light border-0 px-2 text-primary"><i class="bi bi-plus-lg"></i></button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                        <td class="fw-bold">@sousTotal.ToString("N2") DT</td>
+                                        <td class="text-end pe-4">
+                                            <form asp-action="RemoveItem" asp-route-id="@item.ProduitId" method="post">
+                                                @Html.AntiForgeryToken()
+                                                <button type="submit" class="btn btn-sm btn-outline-danger border-0 rounded-circle" onclick="return confirm('Retirer cet article ?');">
+                                                    <i class="bi bi-trash3 fs-5"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-lg rounded-4 p-4 sticky-top" style="top: 20px;">
+                    <h4 class="fw-bold mb-4">Résumé</h4>
+                    <div class="d-flex justify-content-between mb-2"><span class="text-muted">Total articles</span><span class="fw-bold">@Model.Sum(l => l.Quantite)</span></div>
+                    <div class="d-flex justify-content-between mb-4"><span class="text-muted">Livraison</span><span class="text-success fw-bold">Gratuite</span></div>
+                    <hr class="my-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <span class="fs-5 fw-bold">Total</span>
+                        <span class="fs-3 fw-bold text-primary">@totalGeneral.ToString("N2") DT</span>
+                    </div>
+
+                    @if (alerteStockGeneral)
+                    {
+                        <div class="alert alert-warning border-0 small mb-3">Vérifiez les quantités en rouge.</div>
+                        <button class="btn btn-secondary w-100 py-3 fw-bold rounded-pill" disabled>Action requise</button>
+                    }
+                    else
+                    {
+                        <a asp-controller="Commandes" asp-action="Checkout" class="btn btn-primary w-100 py-3 fw-bold rounded-pill shadow-sm btn-checkout">
+                            Finaliser l'achat <i class="bi bi-arrow-right ms-2"></i>
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .table-danger-light {
+        background-color: #fff5f5 !important;
+        border-left: 4px solid #dc3545;
+    }
+
+    .btn-checkout:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 15px rgba(13, 110, 253, 0.3) !important;
+        transition: all 0.3s ease;
+    }
+
+    .input-group span {
+        min-width: 40px;
+    }
+</style>

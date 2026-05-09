@@ -1,0 +1,147 @@
+﻿@model EcommerciApp.Models.Produit
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<Utilisateur> UserManager
+
+@{
+    ViewData["Title"] = Model.Nom;
+    var isAdmin = User.IsInRole("Admin");
+}
+
+<style>
+    .product-card {
+        max-width: 800px;
+        margin: 3rem auto;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        overflow: hidden;
+    }
+
+    .product-image {
+        width: 100%;
+        height: 350px;
+        object-fit: cover;
+    }
+
+    .product-body {
+        padding: 2rem;
+    }
+
+    .category-tag {
+        color: #10b981;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .product-name {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin: 0.5rem 0;
+    }
+
+    .product-price {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: #059669;
+    }
+
+    .stock-badge {
+        display: inline-block;
+        padding: 0.4rem 1rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin-top: 1rem;
+    }
+
+    .badge-admin {
+        background: #dbeafe;
+        color: #1d4ed8;
+    }
+
+    .badge-ok {
+        background: #d1fae5;
+        color: #065f46;
+    }
+
+    .badge-low {
+        background: #fef3c7;
+        color: #92400e;
+    }
+
+    .badge-empty {
+        background: #fee2e2;
+        color: #991b1b;
+    }
+
+    .product-desc {
+        color: #6b7280;
+        line-height: 1.6;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #e5e7eb;
+    }
+
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #6b7280;
+        text-decoration: none;
+        font-weight: 500;
+        margin-bottom: 1.5rem;
+        transition: color 0.2s;
+    }
+
+        .back-link:hover {
+            color: #374151;
+        }
+</style>
+
+<div class="container">
+    <a asp-action="Index" class="back-link">
+        <i class="bi bi-arrow-left"></i> Retour aux produits
+    </a>
+
+    <div class="product-card">
+        <img src="@(Model.ImageUrl ?? "/images/no-image.png")" class="product-image" alt="@Model.Nom" />
+
+        <div class="product-body">
+            <div class="category-tag">@Model.Categorie?.Nom</div>
+            <h1 class="product-name">@Model.Nom</h1>
+            <div class="product-price">@Model.Prix.ToString("N2") DT</div>
+
+            @if (isAdmin)
+            {
+                <span class="stock-badge badge-admin">
+                    <i class="bi bi-box-seam me-1"></i>Stock: @Model.Stock unités
+                </span>
+            }
+            else if (Model.Stock > 5)
+            {
+                <span class="stock-badge badge-ok">
+                    <i class="bi bi-check-circle me-1"></i>En stock
+                </span>
+            }
+            else if (Model.Stock > 0)
+            {
+                <span class="stock-badge badge-low">
+                    <i class="bi bi-exclamation-circle me-1"></i>Stock limité
+                </span>
+            }
+            else
+            {
+                <span class="stock-badge badge-empty">
+                    <i class="bi bi-x-circle me-1"></i>Rupture de stock
+                </span>
+            }
+
+            <p class="product-desc">
+                @(string.IsNullOrEmpty(Model.Description) ? "Aucune description disponible." : Model.Description)
+            </p>
+        </div>
+    </div>
+</div>

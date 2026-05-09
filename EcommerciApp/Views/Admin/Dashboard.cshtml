@@ -1,0 +1,346 @@
+﻿@{
+    ViewData["Title"] = "Tableau de Bord";
+    var topProduits = (IEnumerable<dynamic>)ViewBag.TopProduits;
+    var topClients = (IEnumerable<dynamic>)ViewBag.TopClients;
+    double taux = (double)ViewBag.TauxFinalisation;
+    double ca = (double)ViewBag.ChiffreAffaires;
+    double satisf = (double)ViewBag.TauxSatisfaction;
+    double moyenne = (double)ViewBag.MoyenneNotes;
+    int totalAvis = (int)ViewBag.TotalAvis;
+}
+
+<style>
+    .dash-card {
+        background: #fff;
+        border-radius: 16px;
+        border: 0.5px solid #e2e8f0;
+        padding: 1.5rem;
+        height: 100%;
+    }
+
+    .kpi-label {
+        font-size: 12px;
+        color: #64748b;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 0.5rem;
+    }
+
+    .kpi-value {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        line-height: 1;
+    }
+
+    .kpi-sub {
+        font-size: 12px;
+        color: #94a3b8;
+    }
+
+    .progress {
+        height: 6px;
+        border-radius: 99px;
+        background: #f1f5f9;
+        overflow: hidden;
+        margin-top: 0.75rem;
+    }
+
+    .progress-bar {
+        border-radius: 99px;
+        transition: width 1.2s ease;
+    }
+
+    .section-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #1e293b;
+        margin-bottom: 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .client-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.65rem 0;
+        border-bottom: 0.5px solid #f1f5f9;
+    }
+
+        .client-row:last-child {
+            border-bottom: none;
+        }
+
+    .client-avatar {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: #ede9fe;
+        color: #6366f1;
+        font-size: 13px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .client-name {
+        font-size: 14px;
+        color: #1e293b;
+        font-weight: 500;
+        margin-left: 10px;
+    }
+
+    .client-amount {
+        font-size: 14px;
+        font-weight: 600;
+        color: #10b981;
+        white-space: nowrap;
+    }
+
+    .badge-rank {
+        font-size: 11px;
+        padding: 3px 7px;
+        border-radius: 99px;
+        font-weight: 700;
+        margin-left: 8px;
+    }
+
+    .page-header {
+        background: linear-gradient(135deg, #6366f1, #8b5cf6);
+        border-radius: 16px;
+        padding: 1.75rem 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .stars-display {
+        color: #fbbf24;
+        font-size: 15px;
+        letter-spacing: 2px;
+    }
+
+        .stars-display .empty {
+            color: #e2e8f0;
+        }
+</style>
+
+<div class="container-fluid px-4 mt-4">
+
+    <div class="page-header d-flex align-items-center justify-content-between">
+        <div>
+            <h4 class="fw-bold mb-1 text-white">
+                <i class="bi bi-speedometer2 me-2"></i>Dashboard Administrateur
+            </h4>
+            <p class="mb-0 text-white opacity-75" style="font-size:14px;">
+                Vue d'ensemble de votre activité — EcommerciApp
+            </p>
+        </div>
+        <div class="text-white text-end opacity-75" style="font-size:13px;">
+            <i class="bi bi-calendar3 me-1"></i>
+            @DateTime.Now.ToString("dd MMMM yyyy", new System.Globalization.CultureInfo("fr-FR"))
+        </div>
+    </div>
+
+    <div class="row g-3 mb-4">
+
+        <div class="col-md-3">
+            <div class="dash-card">
+                <div class="kpi-label"><i class="bi bi-cart-check me-1"></i>Commandes totales</div>
+                <div class="kpi-value text-primary">@ViewBag.TotalCommandes</div>
+                <div class="kpi-sub">commandes passées</div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="dash-card">
+                <div class="kpi-label"><i class="bi bi-people me-1"></i>Clients inscrits</div>
+                <div class="kpi-value text-warning">@ViewBag.TotalClients</div>
+                <div class="kpi-sub">comptes clients actifs</div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="dash-card">
+                <div class="kpi-label"><i class="bi bi-cash-stack me-1"></i>Chiffre d'affaires</div>
+                <div class="kpi-value text-danger">@ca.ToString("F0") DT</div>
+                <div class="kpi-sub">total des ventes réalisées</div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="dash-card">
+                <div class="kpi-label"><i class="bi bi-graph-up-arrow me-1"></i>Taux de finalisation</div>
+                <div class="kpi-value text-success">@taux.ToString("F1")%</div>
+                <div class="kpi-sub">CA commandes / CA paniers</div>
+                <div class="progress">
+                    <div class="progress-bar bg-success" style="width:@taux%"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row g-3 mb-4">
+
+        <div class="col-md-6">
+            <div class="dash-card">
+                <div class="kpi-label"><i class="bi bi-star-fill me-1"></i>Satisfaction client</div>
+                <div class="d-flex align-items-center gap-3 mt-1">
+                    <div class="kpi-value text-info mb-0">@satisf%</div>
+                    <div>
+                        <div class="stars-display">
+                            @for (int i = 1; i <= 5; i++)
+                            {
+                                if (i <= Math.Round(moyenne))
+                                {
+                                    <span>★</span>
+                                }
+                                else
+                                {
+                                    <span class="empty">★</span>
+                                }
+                            }
+                        </div>
+                        <div class="kpi-sub mt-1">
+                            moyenne @moyenne/5 — @totalAvis avis déposés
+                        </div>
+                    </div>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar bg-info" style="width:@satisf%"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="dash-card">
+                <div class="kpi-label"><i class="bi bi-chat-square-text me-1"></i>Résumé des avis</div>
+                @if (totalAvis == 0)
+                {
+                    <p class="text-muted mt-2" style="font-size:13px;">Aucun avis pour le moment.</p>
+                }
+                else
+                {
+                    <p class="kpi-sub mt-1">
+                        @((int)ViewBag.TauxSatisfaction)% des clients satisfaits (note ≥ 3/5)
+                    </p>
+                    <div class="progress mt-2" style="height:10px;">
+                        <div class="progress-bar"
+                             style="width:@satisf%; background:linear-gradient(90deg,#6366f1,#10b981);">
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row g-3">
+
+        <div class="col-lg-7">
+            <div class="dash-card">
+                <div class="section-title">
+                    <i class="bi bi-bar-chart-fill text-primary"></i>
+                    Top 5 produits les plus vendus
+                </div>
+                <canvas id="chartProduits" height="220"></canvas>
+            </div>
+        </div>
+
+        <div class="col-lg-5">
+            <div class="dash-card">
+                <div class="section-title">
+                    <i class="bi bi-trophy-fill text-warning"></i>
+                    Top 5 meilleurs clients
+                </div>
+
+                @{
+                    int rank = 1;
+                    var rankColors = new Dictionary<int, string>
+                {
+                { 1, "#fbbf24" },
+                { 2, "#94a3b8" },
+                { 3, "#cd7c3a" }
+                };
+                }
+
+                @foreach (var client in topClients)
+                {
+                    string nomComplet = (string)client.NomComplet;
+                    string[] parts = nomComplet.Split(' ');
+                    string initiales = parts.Length >= 2
+                    ? parts[0].Substring(0, 1).ToUpper() + parts[1].Substring(0, 1).ToUpper()
+                    : nomComplet.Substring(0, Math.Min(2, nomComplet.Length)).ToUpper();
+
+                    <div class="client-row">
+                        <div class="d-flex align-items-center">
+                            <div class="client-avatar">@initiales</div>
+                            <span class="client-name">@nomComplet</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <span class="client-amount">@client.Somme.ToString("F2") DT</span>
+                            @if (rank <= 3)
+                            {
+                                string couleur = rankColors[rank];
+                                <span class="badge-rank"
+                                      style="background:@(couleur)22; color:@couleur; border:1px solid @(couleur)66;">
+                                    #@rank
+                                </span>
+                            }
+                        </div>
+                    </div>
+                    rank++;
+                }
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('chartProduits').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: @Html.Raw(Json.Serialize(topProduits.Select(p => (string)p.Nom))),
+                datasets: [{
+                    label: 'Unités vendues',
+                    data: @Html.Raw(Json.Serialize(topProduits.Select(p => (int)p.Total))),
+                    backgroundColor: ['#6366f1','#8b5cf6','#ec4899','#06b6d4','#10b981'],
+                    borderRadius: 10,
+                    borderSkipped: false
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.parsed.y + ' unités vendues';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { stepSize: 1, color: '#94a3b8' },
+                        grid: { color: '#f1f5f9' }
+                    },
+                    x: {
+                        ticks: { color: '#94a3b8' },
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+    </script>
+}

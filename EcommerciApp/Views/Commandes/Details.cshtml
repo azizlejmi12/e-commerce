@@ -1,0 +1,79 @@
+﻿@model EcommerciApp.Models.Commande
+
+@{
+    ViewData["Title"] = "Détails de la Commande";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Détails de la Commande #@Model.Id</h1>
+        <span class="badge bg-info fs-5">@Model.Statut</span>
+    </div>
+
+    <div class="row">
+        @* Colonne de gauche : Infos Livraison *@
+        <div class="col-md-5">
+            <div class="card shadow-sm border-0 rounded-4 p-4 mb-4">
+                <h4 class="text-primary mb-3">Informations Client</h4>
+                <hr />
+                <dl class="row">
+                    <dt class="col-sm-4">Date</dt>
+                    <dd class="col-sm-8">@Model.DateCommande.ToString("dd/MM/yyyy HH:mm")</dd>
+
+                    <dt class="col-sm-4">Client</dt>
+                    <dd class="col-sm-8">@Model.Utilisateur?.Email</dd>
+
+                    <dt class="col-sm-4">Téléphone</dt>
+                    <dd class="col-sm-8 fw-bold text-success">@Model.Telephone</dd>
+
+                    <dt class="col-sm-4">Ville</dt>
+                    <dd class="col-sm-8">@Model.Ville</dd>
+
+                    <dt class="col-sm-4">Adresse</dt>
+                    <dd class="col-sm-8 text-muted">@Model.AdresseLivraison</dd>
+                </dl>
+            </div>
+        </div>
+
+        @* Colonne de droite : Liste des Produits *@
+        <div class="col-md-7">
+            <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
+                <table class="table align-middle mb-0">
+                    <thead class="bg-light">
+                        <tr>
+                            <th class="ps-3">Produit</th>
+                            <th>Prix</th>
+                            <th>Qté</th>
+                            <th class="text-end pe-3">Sous-total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.LignesCommande)
+                        {
+                            <tr>
+                                <td class="ps-3">@item.Produit?.Nom</td>
+                                <td>@item.PrixUnitaire.ToString("N2") DT</td>
+                                <td>x @item.Quantite</td>
+                                <td class="text-end pe-3">@item.SousTotal.ToString("N2") DT</td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot class="bg-light fw-bold">
+                        <tr>
+                            <td colspan="3" class="text-end">Total Général</td>
+                            <td class="text-end pe-3 text-primary">@Model.Total.ToString("N2") DT</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        @if (User.IsInRole("Admin"))
+        {
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning rounded-pill px-4">Modifier Statut</a>
+        }
+        <a asp-action="MesCommandes" class="btn btn-outline-secondary rounded-pill px-4">Retour à mes commandes</a>
+    </div>
+</div>

@@ -1,0 +1,249 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<EcommerciApp.Models.Utilisateur> UserManager
+@inject EcommerciApp.Data.ApplicationDbContext DbContext
+
+@{
+    int cartCount = 0;
+    int notifCount = 0;
+
+    if (User.Identity.IsAuthenticated)
+    {
+        var userId = UserManager.GetUserId(User);
+
+        cartCount = DbContext.LignePaniers
+            .Where(l => l.Panier.UtilisateurId == userId)
+            .Sum(l => (int?)l.Quantite) ?? 0;
+
+        notifCount = DbContext.Commandes
+            .Count(c => c.UtilisateurId == userId && !c.IsRead);
+    }
+}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - EcommerciApp</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #8b5cf6;
+            --accent-color: #ec4899;
+            --dark-color: #1e293b;
+            --light-color: #f8fafc;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f1f5f9;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 1rem 0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: white !important;
+        }
+
+        .navbar-nav .nav-link {
+            color: rgba(255,255,255,0.9) !important;
+            font-weight: 500;
+            margin: 0 0.5rem;
+            transition: all 0.3s;
+        }
+
+            .navbar-nav .nav-link:hover {
+                color: white !important;
+                transform: translateY(-2px);
+            }
+
+        @@keyframes pulse-red {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+            }
+
+            70% {
+                transform: scale(1.1);
+                box-shadow: 0 0 0 5px rgba(239, 68, 68, 0);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+            }
+        }
+
+        .badge-notif {
+            animation: pulse-red 2s infinite;
+            font-size: 0.65rem !important;
+            padding: 0.35em 0.5em !important;
+            border: 2px solid var(--primary-color);
+        }
+
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .dropdown-menu {
+            border-radius: 12px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-shop me-2"></i>EcommerciApp
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index"><i class="bi bi-house me-1"></i>Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Produits" asp-action="Index"><i class="bi bi-grid me-1"></i>Produits</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-controller="Categories" asp-action="Index"><i class="bi bi-tags me-1"></i>Catégories</a></li>
+                </ul>
+
+                <ul class="navbar-nav align-items-center">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item me-2">
+                            <a class="nav-link position-relative d-flex align-items-center"
+                               asp-controller="Commandes" asp-action="MesCommandes" title="Mes notifications">
+                                <i class="bi bi-bell fs-4"></i>
+                                @if (notifCount > 0)
+                                {
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger badge-notif">
+                                        @notifCount
+                                    </span>
+                                }
+                            </a>
+                        </li>
+
+                        <li class="nav-item me-3">
+                            <a class="nav-link position-relative d-flex align-items-center"
+                               asp-controller="Paniers" asp-action="Index">
+                                <i class="bi bi-cart3 fs-4"></i>
+                                @if (cartCount > 0)
+                                {
+                                    <span class="position-absolute top-0 start-100 translate-middle badge bg-warning text-dark rounded-pill"
+                                          style="font-size: 0.65rem; padding: 0.35em 0.5em;">
+                                        @cartCount
+                                    </span>
+                                }
+                            </a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" data-bs-toggle="dropdown">
+                                <i class="bi bi-person-circle me-1"></i>@User.Identity.Name
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+                                <li>
+                                    <a class="dropdown-item" asp-controller="Commandes" asp-action="MesCommandes">
+                                        <i class="bi bi-bag-check me-2 text-primary"></i>Suivre mes commandes
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" asp-controller="Account" asp-action="Profil">
+                                        <i class="bi bi-person me-2 text-muted"></i>Mon profil
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" asp-controller="Fidelite" asp-action="Index">
+                                        <i class="bi bi-gift me-2 text-warning"></i>Mes points
+                                    </a>
+                                </li>
+
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><h6 class="dropdown-header text-uppercase small fw-bold">Administration</h6></li>
+                                    <li>
+                                        <a class="dropdown-item fw-bold text-dark" asp-controller="Admin" asp-action="Dashboard">
+                                            <i class="bi bi-speedometer2 me-2 text-primary"></i>Tableau de Bord
+                                        </a>
+                                    </li>
+                                    <li><a class="dropdown-item" asp-controller="Produits" asp-action="Index"><i class="bi bi-box-seam me-2 text-secondary"></i>Stock produits</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Categories" asp-action="Index"><i class="bi bi-tags me-2 text-secondary"></i>Rayons</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Commandes" asp-action="Index"><i class="bi bi-truck me-2 text-danger"></i>Gestion Livraisons</a></li>
+                                }
+
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <form asp-controller="Account" asp-action="Logout" method="post">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="dropdown-item text-danger">
+                                            <i class="bi bi-box-arrow-right me-2"></i>Déconnexion
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item"><a class="nav-link" asp-controller="Account" asp-action="Index">Connexion</a></li>
+                        <li class="nav-item ms-2"><a class="btn btn-light text-primary" asp-controller="Account" asp-action="Index" asp-route-register="1">Inscription</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5><i class="bi bi-shop me-2"></i>EcommerciApp</h5>
+                    <p>Votre boutique en ligne préférée. Qualité, prix bas, livraison rapide.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Liens rapides</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light text-decoration-none">À propos</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Contact</h5>
+                    <p><i class="bi bi-envelope me-2"></i>contact@ecommerciapp.com</p>
+                    <div class="mt-3">
+                        <a href="#" class="text-light me-3"><i class="bi bi-facebook fs-4"></i></a>
+                        <a href="#" class="text-light me-3"><i class="bi bi-instagram fs-4"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p>&copy; 2026 EcommerciApp. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
