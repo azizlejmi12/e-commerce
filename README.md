@@ -238,11 +238,8 @@ Les contributions sont les bienvenues !
 
 ---
 
-## 📝 License
 
-Ce projet est sous licence **MIT**.
 
----
 
 ## 👤 Auteur
 
