@@ -6,33 +6,83 @@
             <div class="card shadow-lg border-0 rounded-4">
                 <div class="card-body p-5">
                     <h3 class="fw-bold mb-4 text-center">Finaliser la commande</h3>
-                    <p class="text-muted text-center mb-4">Montant total à payer : <strong>@Model.Total.ToString("N2") DT</strong></p>
+                    <p class="text-muted text-center mb-4">
+                        Montant total à payer : <strong>@Model.Total.ToString("N2") DT</strong>
+                    </p>
 
-                    @* On pointe vers ConfirmerCommande *@
                     <form asp-action="ConfirmerCommande" method="post">
                         @Html.AntiForgeryToken()
 
                         <div class="mb-3">
                             <label class="form-label fw-bold">Ville</label>
-                            <input name="Ville" class="form-control rounded-3" placeholder="Ex: Tunis, Sousse..." required />
+                            <input name="Ville" class="form-control rounded-3"
+                                   placeholder="Ex: Tunis, Sousse..." required />
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label fw-bold">Adresse de livraison</label>
-                            <textarea name="AdresseLivraison" class="form-control rounded-3" rows="3"
-                                      placeholder="Ex: 123 Rue de la Liberté" required></textarea>
+                            <textarea name="AdresseLivraison" class="form-control rounded-3"
+                                      rows="3" placeholder="Ex: 123 Rue de la Liberté" required></textarea>
                         </div>
 
                         <div class="mb-4">
                             <label class="form-label fw-bold">Numéro de téléphone</label>
-                            <input name="Telephone" type="tel" class="form-control rounded-3" placeholder="Ex: 22 123 456" required />
+                            <input name="Telephone" type="tel" class="form-control rounded-3"
+                                   placeholder="Ex: 22 123 456" required />
                         </div>
+
+                        @* ✅ BLOC POINTS FIDÉLITÉ *@
+                        @if (ViewBag.PointsDisponibles != null && ViewBag.PointsDisponibles >= 100)
+                        {
+                            <div class="alert alert-warning border-0 rounded-3 mb-4">
+                                <h6 class="fw-bold mb-2">
+                                    <i class="bi bi-gift me-2"></i>
+                                    Vous avez @ViewBag.PointsDisponibles points disponibles
+                                </h6>
+                                <small class="text-muted d-block mb-3">
+                                    100 points = 5 DT de réduction (min: 100 pts — max: 500 pts par commande)
+                                </small>
+
+                                <label class="form-label fw-bold">
+                                    Combien de points voulez-vous utiliser ?
+                                </label>
+                                <input type="number"
+                                       name="PointsAUtiliser"
+                                       id="pointsInput"
+                                       class="form-control rounded-3 mb-2"
+                                       min="0"
+                                       max="@(Math.Min((int)ViewBag.PointsDisponibles, 500))"
+                                       step="100"
+                                       value="0"
+                                       onchange="calculerTotal(this.value)"
+                                       oninput="calculerTotal(this.value)" />
+                                <small class="text-muted">
+                                    Entrez un multiple de 100 (100, 200, 300, 400 ou 500)
+                                </small>
+
+                                <div id="erreurPoints" class="mt-2 text-danger small d-none">
+                                    ⚠ Veuillez entrer un multiple de 100 entre 100 et 500
+                                </div>
+
+                                <div id="totalApresReduction"
+                                     class="mt-3 p-2 bg-success text-white rounded-3 d-none">
+                                    <i class="bi bi-check-circle me-2"></i>
+                                    Réduction appliquée : <strong><span id="montantReduction"></span> DT</strong><br>
+                                    Nouveau total : <strong><span id="nouveauTotal"></span> DT</strong>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <input type="hidden" name="PointsAUtiliser" value="0" />
+                        }
 
                         <div class="alert alert-info small border-0">
                             <i class="bi bi-cash-stack me-2"></i>Paiement en espèces à la livraison.
                         </div>
 
-                        <button type="submit" class="btn btn-success w-100 py-3 fw-bold rounded-pill shadow-sm mt-3">
+                        <button type="submit"
+                                class="btn btn-success w-100 py-3 fw-bold rounded-pill shadow-sm mt-3">
                             Confirmer et commander
                         </button>
                     </form>
@@ -41,3 +91,38 @@
         </div>
     </div>
 </div>
+
+<script>
+    var totalBrut = @Model.Total;
+    var pointsMax = Math.min(@(ViewBag.PointsDisponibles ?? 0), 500);
+
+    function calculerTotal(valeur) {
+        var points = parseInt(valeur) || 0;
+        var erreur = document.getElementById('erreurPoints');
+        var bloc = document.getElementById('totalApresReduction');
+
+        // Vérifier multiple de 100
+        if (points > 0 && points % 100 !== 0) {
+            erreur.classList.remove('d-none');
+            bloc.classList.add('d-none');
+            return;
+        }
+        erreur.classList.add('d-none');
+
+        // Limiter au max
+        if (points > pointsMax) {
+            document.getElementById('pointsInput').value = pointsMax;
+            points = pointsMax;
+        }
+
+        if (points >= 100) {
+            var reduction = (points / 100) * 5;
+            var nouveauTotal = Math.max(0, totalBrut - reduction);
+            document.getElementById('montantReduction').innerText = reduction.toFixed(2);
+            document.getElementById('nouveauTotal').innerText = nouveauTotal.toFixed(2);
+            bloc.classList.remove('d-none');
+        } else {
+            bloc.classList.add('d-none');
+        }
+    }
+</script>

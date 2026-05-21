@@ -3,28 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|c:\\users\\asus\\source\\repos\\ecommerciapp\\ecommerciapp\\views\\paniers\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|solutionrelative:ecommerciapp\\views\\paniers\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|c:\\users\\asus\\source\\repos\\ecommerciapp\\ecommerciapp\\controllers\\panierscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|solutionrelative:ecommerciapp\\controllers\\panierscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|c:\\users\\asus\\source\\repos\\ecommerciapp\\ecommerciapp\\controllers\\produitscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|solutionrelative:ecommerciapp\\controllers\\produitscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|c:\\users\\asus\\source\\repos\\ecommerciapp\\ecommerciapp\\views\\produits\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|solutionrelative:ecommerciapp\\views\\produits\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|c:\\users\\asus\\source\\repos\\ecommerciapp\\ecommerciapp\\controllers\\commandescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|solutionrelative:ecommerciapp\\controllers\\commandescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|c:\\users\\asus\\source\\repos\\ecommerciapp\\ecommerciapp\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|solutionrelative:ecommerciapp\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|c:\\users\\asus\\source\\repos\\ecommerciapp\\ecommerciapp\\views\\commandes\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|solutionrelative:ecommerciapp\\views\\commandes\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Migrations\\20260521202803_AjouterPointsFideliteCommande.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EcommerciApp\\Migrations\\20260521202803_AjouterPointsFideliteCommande.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|c:\\users\\asus\\source\\repos\\ecommerciapp\\ecommerciapp\\models\\commande.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|solutionrelative:ecommerciapp\\models\\commande.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|c:\\users\\asus\\source\\repos\\ecommerciapp\\ecommerciapp\\models\\utilisateur.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|solutionrelative:ecommerciapp\\models\\utilisateur.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|c:\\users\\asus\\source\\repos\\ecommerciapp\\ecommerciapp\\views\\fidelite\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -35,84 +31,8 @@
       "RelativeMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|solutionrelative:ecommerciapp\\controllers\\fidelitecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|c:\\users\\asus\\source\\repos\\ecommerciapp\\ecommerciapp\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|solutionrelative:ecommerciapp\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|c:\\users\\asus\\source\\repos\\ecommerciapp\\ecommerciapp\\migrations\\20260416161826_addpointsfidelite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|solutionrelative:ecommerciapp\\migrations\\20260416161826_addpointsfidelite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|c:\\users\\asus\\source\\repos\\ecommerciapp\\ecommerciapp\\models\\utilisateur.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|solutionrelative:ecommerciapp\\models\\utilisateur.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|c:\\users\\asus\\source\\repos\\ecommerciapp\\ecommerciapp\\views\\compte\\profil.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|solutionrelative:ecommerciapp\\views\\compte\\profil.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|c:\\users\\asus\\source\\repos\\ecommerciapp\\ecommerciapp\\views\\auth\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|solutionrelative:ecommerciapp\\views\\auth\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|c:\\users\\asus\\source\\repos\\ecommerciapp\\ecommerciapp\\controllers\\aviscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|solutionrelative:ecommerciapp\\controllers\\aviscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|c:\\users\\asus\\source\\repos\\ecommerciapp\\ecommerciapp\\models\\produit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|solutionrelative:ecommerciapp\\models\\produit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|c:\\users\\asus\\source\\repos\\ecommerciapp\\ecommerciapp\\views\\produits\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|solutionrelative:ecommerciapp\\views\\produits\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|c:\\users\\asus\\source\\repos\\ecommerciapp\\ecommerciapp\\views\\avis\\donner.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|solutionrelative:ecommerciapp\\views\\avis\\donner.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|c:\\users\\asus\\source\\repos\\ecommerciapp\\ecommerciapp\\models\\avis.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|solutionrelative:ecommerciapp\\models\\avis.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|c:\\users\\asus\\source\\repos\\ecommerciapp\\ecommerciapp\\views\\commandes\\mescommandes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|solutionrelative:ecommerciapp\\views\\commandes\\mescommandes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|c:\\users\\asus\\source\\repos\\ecommerciapp\\ecommerciapp\\models\\commande.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|solutionrelative:ecommerciapp\\models\\commande.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|c:\\users\\asus\\source\\repos\\ecommerciapp\\ecommerciapp\\views\\admin\\dashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|solutionrelative:ecommerciapp\\views\\admin\\dashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|c:\\users\\asus\\source\\repos\\ecommerciapp\\ecommerciapp\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|solutionrelative:ecommerciapp\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|c:\\users\\asus\\source\\repos\\ecommerciapp\\ecommerciapp\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|solutionrelative:ecommerciapp\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|c:\\users\\asus\\source\\repos\\ecommerciapp\\ecommerciapp\\controllers\\lignepanierscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|solutionrelative:ecommerciapp\\controllers\\lignepanierscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|c:\\users\\asus\\source\\repos\\ecommerciapp\\ecommerciapp\\views\\commandes\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|solutionrelative:ecommerciapp\\views\\commandes\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|c:\\users\\asus\\source\\repos\\ecommerciapp\\ecommerciapp\\views\\paniers\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|solutionrelative:ecommerciapp\\views\\paniers\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|c:\\users\\asus\\source\\repos\\ecommerciapp\\ecommerciapp\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|solutionrelative:ecommerciapp\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|c:\\users\\asus\\source\\repos\\ecommerciapp\\ecommerciapp\\migrations\\20260410185117_ajouttableavis.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|solutionrelative:ecommerciapp\\migrations\\20260410185117_ajouttableavis.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|c:\\users\\asus\\source\\repos\\ecommerciapp\\ecommerciapp\\views\\paniers\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D4095CCD-7DB4-457C-9F9A-82C7C02CCC95}|EcommerciApp\\EcommerciApp.csproj|solutionrelative:ecommerciapp\\views\\paniers\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -122,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 30,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -146,352 +66,107 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Views\\Fidelite\\Index.cshtml",
-              "RelativeDocumentMoniker": "EcommerciApp\\Views\\Fidelite\\Index.cshtml",
-              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Views\\Fidelite\\Index.cshtml",
-              "RelativeToolTip": "EcommerciApp\\Views\\Fidelite\\Index.cshtml",
-              "ViewState": "AgIAADgAAAAAAAAAAAAwwFYAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-16T16:26:03.421Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "FideliteController.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Controllers\\FideliteController.cs",
-              "RelativeDocumentMoniker": "EcommerciApp\\Controllers\\FideliteController.cs",
-              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Controllers\\FideliteController.cs",
-              "RelativeToolTip": "EcommerciApp\\Controllers\\FideliteController.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAwwCYAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-16T16:23:07.269Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "20260416161826_AddPointsFidelite.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Migrations\\20260416161826_AddPointsFidelite.cs",
-              "RelativeDocumentMoniker": "EcommerciApp\\Migrations\\20260416161826_AddPointsFidelite.cs",
-              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Migrations\\20260416161826_AddPointsFidelite.cs",
-              "RelativeToolTip": "EcommerciApp\\Migrations\\20260416161826_AddPointsFidelite.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-16T16:18:26.856Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Profil.cshtml",
-              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Views\\Compte\\Profil.cshtml",
-              "RelativeDocumentMoniker": "EcommerciApp\\Views\\Compte\\Profil.cshtml",
-              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Views\\Compte\\Profil.cshtml",
-              "RelativeToolTip": "EcommerciApp\\Views\\Compte\\Profil.cshtml",
-              "ViewState": "AgIAAHMAAAAAAAAAAAAcwIQAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-16T13:57:43.608Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "AccountController.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Controllers\\AccountController.cs",
-              "RelativeDocumentMoniker": "EcommerciApp\\Controllers\\AccountController.cs",
-              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Controllers\\AccountController.cs",
-              "RelativeToolTip": "EcommerciApp\\Controllers\\AccountController.cs",
-              "ViewState": "AgIAAFcAAAAAAAAAAADwv2oAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-10T19:53:03.986Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Views\\Auth\\Index.cshtml",
-              "RelativeDocumentMoniker": "EcommerciApp\\Views\\Auth\\Index.cshtml",
-              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Views\\Auth\\Index.cshtml",
-              "RelativeToolTip": "EcommerciApp\\Views\\Auth\\Index.cshtml",
-              "ViewState": "AgIAALYAAAAAAAAAAAAwwOMAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-10T19:51:01.087Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Views\\Produits\\Details.cshtml",
-              "RelativeDocumentMoniker": "EcommerciApp\\Views\\Produits\\Details.cshtml",
-              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Views\\Produits\\Details.cshtml",
-              "RelativeToolTip": "EcommerciApp\\Views\\Produits\\Details.cshtml",
-              "ViewState": "AgIAAGkAAAAAAAAAAAAAABcAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-10T19:22:42.322Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "MesCommandes.cshtml",
-              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Views\\Commandes\\MesCommandes.cshtml",
-              "RelativeDocumentMoniker": "EcommerciApp\\Views\\Commandes\\MesCommandes.cshtml",
-              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Views\\Commandes\\MesCommandes.cshtml",
-              "RelativeToolTip": "EcommerciApp\\Views\\Commandes\\MesCommandes.cshtml",
-              "ViewState": "AgIAAFcAAAAAAAAAAAAqwGgAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-10T18:53:44.724Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "Donner.cshtml",
-              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Views\\Avis\\Donner.cshtml",
-              "RelativeDocumentMoniker": "EcommerciApp\\Views\\Avis\\Donner.cshtml",
-              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Views\\Avis\\Donner.cshtml",
-              "RelativeToolTip": "EcommerciApp\\Views\\Avis\\Donner.cshtml",
-              "ViewState": "AgIAADMAAAAAAAAAAAAqwFgAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-10T18:53:01.002Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "AvisController.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Controllers\\AvisController.cs",
-              "RelativeDocumentMoniker": "EcommerciApp\\Controllers\\AvisController.cs",
-              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Controllers\\AvisController.cs",
-              "RelativeToolTip": "EcommerciApp\\Controllers\\AvisController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEoAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-10T18:52:15.921Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "20260410185117_AjoutTableAvis.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Migrations\\20260410185117_AjoutTableAvis.cs",
-              "RelativeDocumentMoniker": "EcommerciApp\\Migrations\\20260410185117_AjoutTableAvis.cs",
-              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Migrations\\20260410185117_AjoutTableAvis.cs",
-              "RelativeToolTip": "EcommerciApp\\Migrations\\20260410185117_AjoutTableAvis.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-10T18:51:18.152Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "Avis.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Models\\Avis.cs",
-              "RelativeDocumentMoniker": "EcommerciApp\\Models\\Avis.cs",
-              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Models\\Avis.cs",
-              "RelativeToolTip": "EcommerciApp\\Models\\Avis.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-10T18:49:42.027Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Data\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "EcommerciApp\\Data\\ApplicationDbContext.cs",
-              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Data\\ApplicationDbContext.cs",
-              "RelativeToolTip": "EcommerciApp\\Data\\ApplicationDbContext.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAA5wA0AAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-10T18:45:17.469Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "Commande.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Models\\Commande.cs",
-              "RelativeDocumentMoniker": "EcommerciApp\\Models\\Commande.cs",
-              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Models\\Commande.cs",
-              "RelativeToolTip": "EcommerciApp\\Models\\Commande.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-10T18:15:27.605Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "Dashboard.cshtml",
-              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Views\\Admin\\Dashboard.cshtml",
-              "RelativeDocumentMoniker": "EcommerciApp\\Views\\Admin\\Dashboard.cshtml",
-              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Views\\Admin\\Dashboard.cshtml",
-              "RelativeToolTip": "EcommerciApp\\Views\\Admin\\Dashboard.cshtml",
-              "ViewState": "AgIAADUBAAAAAAAAAAAuwFMBAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-10T17:56:43.009Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "AdminController.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Controllers\\AdminController.cs",
-              "RelativeDocumentMoniker": "EcommerciApp\\Controllers\\AdminController.cs",
-              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Controllers\\AdminController.cs",
-              "RelativeToolTip": "EcommerciApp\\Controllers\\AdminController.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAAAuwFkAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-10T17:55:14.675Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Utilisateur.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Models\\Utilisateur.cs",
-              "RelativeDocumentMoniker": "EcommerciApp\\Models\\Utilisateur.cs",
-              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Models\\Utilisateur.cs",
-              "RelativeToolTip": "EcommerciApp\\Models\\Utilisateur.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-10T17:49:53.281Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "EcommerciApp\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "EcommerciApp\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAJEAAAAAAAAAAAAcwKwAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-08T19:31:53.893Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "Checkout.cshtml",
-              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Views\\Commandes\\Checkout.cshtml",
-              "RelativeDocumentMoniker": "EcommerciApp\\Views\\Commandes\\Checkout.cshtml",
-              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Views\\Commandes\\Checkout.cshtml",
-              "RelativeToolTip": "EcommerciApp\\Views\\Commandes\\Checkout.cshtml",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAswB8AAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-08T18:42:33.77Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "Produit.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Models\\Produit.cs",
-              "RelativeDocumentMoniker": "EcommerciApp\\Models\\Produit.cs",
-              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Models\\Produit.cs",
-              "RelativeToolTip": "EcommerciApp\\Models\\Produit.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T18:39:20.441Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "CommandesController.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Controllers\\CommandesController.cs",
-              "RelativeDocumentMoniker": "EcommerciApp\\Controllers\\CommandesController.cs",
-              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Controllers\\CommandesController.cs",
-              "RelativeToolTip": "EcommerciApp\\Controllers\\CommandesController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAkwB8BAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T18:37:38.734Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Views\\Produits\\Index.cshtml",
-              "RelativeDocumentMoniker": "EcommerciApp\\Views\\Produits\\Index.cshtml",
-              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Views\\Produits\\Index.cshtml",
-              "RelativeToolTip": "EcommerciApp\\Views\\Produits\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-08T18:35:36.277Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "ProduitsController.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Controllers\\ProduitsController.cs",
-              "RelativeDocumentMoniker": "EcommerciApp\\Controllers\\ProduitsController.cs",
-              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Controllers\\ProduitsController.cs",
-              "RelativeToolTip": "EcommerciApp\\Controllers\\ProduitsController.cs",
-              "ViewState": "AgIAAJkAAAAAAAAAAAAgwLYAAAABAAAAAAAAAA==",
+              "Title": "20260521202803_AjouterPointsFideliteCommande.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Migrations\\20260521202803_AjouterPointsFideliteCommande.cs",
+              "RelativeDocumentMoniker": "EcommerciApp\\Migrations\\20260521202803_AjouterPointsFideliteCommande.cs",
+              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Migrations\\20260521202803_AjouterPointsFideliteCommande.cs",
+              "RelativeToolTip": "EcommerciApp\\Migrations\\20260521202803_AjouterPointsFideliteCommande.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T18:33:01.893Z",
+              "WhenOpened": "2026-05-21T20:28:03.396Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "PaniersController.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Controllers\\PaniersController.cs",
-              "RelativeDocumentMoniker": "EcommerciApp\\Controllers\\PaniersController.cs",
-              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Controllers\\PaniersController.cs",
-              "RelativeToolTip": "EcommerciApp\\Controllers\\PaniersController.cs",
-              "ViewState": "AgIAAFwAAAAAAAAAAAAgwL0AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T18:28:30.592Z",
+              "Title": "Checkout.cshtml",
+              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Views\\Commandes\\Checkout.cshtml",
+              "RelativeDocumentMoniker": "EcommerciApp\\Views\\Commandes\\Checkout.cshtml",
+              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Views\\Commandes\\Checkout.cshtml",
+              "RelativeToolTip": "EcommerciApp\\Views\\Commandes\\Checkout.cshtml",
+              "ViewState": "AgIAAGMAAAAAAAAAAAAIwH8AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-21T20:18:24.215Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "Delete.cshtml",
-              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Views\\Paniers\\Delete.cshtml",
-              "RelativeDocumentMoniker": "EcommerciApp\\Views\\Paniers\\Delete.cshtml",
-              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Views\\Paniers\\Delete.cshtml",
-              "RelativeToolTip": "EcommerciApp\\Views\\Paniers\\Delete.cshtml",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAIwB4AAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-08T18:05:47.158Z"
+              "DocumentIndex": 4,
+              "Title": "Utilisateur.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Models\\Utilisateur.cs",
+              "RelativeDocumentMoniker": "EcommerciApp\\Models\\Utilisateur.cs",
+              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Models\\Utilisateur.cs",
+              "RelativeToolTip": "EcommerciApp\\Models\\Utilisateur.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-21T20:25:04.037Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "CommandesController.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Controllers\\CommandesController.cs",
+              "RelativeDocumentMoniker": "EcommerciApp\\Controllers\\CommandesController.cs",
+              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Controllers\\CommandesController.cs",
+              "RelativeToolTip": "EcommerciApp\\Controllers\\CommandesController.cs",
+              "ViewState": "AgIAABUBAAAAAAAAAAAIwDEBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-21T20:24:35.957Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Commande.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Models\\Commande.cs",
+              "RelativeDocumentMoniker": "EcommerciApp\\Models\\Commande.cs",
+              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Models\\Commande.cs",
+              "RelativeToolTip": "EcommerciApp\\Models\\Commande.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-21T20:19:00.098Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Views\\Fidelite\\Index.cshtml",
+              "RelativeDocumentMoniker": "EcommerciApp\\Views\\Fidelite\\Index.cshtml",
+              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Views\\Fidelite\\Index.cshtml",
+              "RelativeToolTip": "EcommerciApp\\Views\\Fidelite\\Index.cshtml",
+              "ViewState": "AgIAACYAAAAAAAAAAAAAwFsAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-21T20:18:36.392Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "FideliteController.cs",
+              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Controllers\\FideliteController.cs",
+              "RelativeDocumentMoniker": "EcommerciApp\\Controllers\\FideliteController.cs",
+              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Controllers\\FideliteController.cs",
+              "RelativeToolTip": "EcommerciApp\\Controllers\\FideliteController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-21T20:15:44.136Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Views\\Paniers\\Index.cshtml",
               "RelativeDocumentMoniker": "EcommerciApp\\Views\\Paniers\\Index.cshtml",
               "ToolTip": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Views\\Paniers\\Index.cshtml",
               "RelativeToolTip": "EcommerciApp\\Views\\Paniers\\Index.cshtml",
-              "ViewState": "AgIAAI0AAAAAAAAAAAAwwJ4AAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAwwIsAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-04-08T18:05:26.5Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "LignePaniersController.cs",
-              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Controllers\\LignePaniersController.cs",
-              "RelativeDocumentMoniker": "EcommerciApp\\Controllers\\LignePaniersController.cs",
-              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Controllers\\LignePaniersController.cs",
-              "RelativeToolTip": "EcommerciApp\\Controllers\\LignePaniersController.cs",
-              "ViewState": "AgIAADwAAAAAAAAAAAAmwEYAAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T18:04:36.018Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "_ViewImports.cshtml",
-              "DocumentMoniker": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Views\\_ViewImports.cshtml",
-              "RelativeDocumentMoniker": "EcommerciApp\\Views\\_ViewImports.cshtml",
-              "ToolTip": "C:\\Users\\ASUS\\source\\repos\\EcommerciApp\\EcommerciApp\\Views\\_ViewImports.cshtml",
-              "RelativeToolTip": "EcommerciApp\\Views\\_ViewImports.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-08T17:18:40.237Z"
             }
           ]
         }

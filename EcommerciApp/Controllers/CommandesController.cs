@@ -39,17 +39,23 @@ namespace EcommerciApp.Controllers
             var total = panier.LignesPanier.Sum(l => (l.PrixUnitaire ?? 0) * l.Quantite);
             var commande = new Commande { Total = total };
 
+            // ✅ Envoyer les points à la vue
+            var user = await _userManager.FindByIdAsync(userId);
+            ViewBag.PointsDisponibles = user.PointsFidelite;
+            ViewBag.ReductionMax = (Math.Min(user.PointsFidelite, 500) / 100) * 5m;
+
             return View(commande);
         }
 
-        // 2. Créer la commande, DIMINUER LE STOCK, vider le panier ET AJOUTER POINTS FIDÉLITÉ
+        // 2. Créer la commande
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ConfirmerCommande(string AdresseLivraison, string Telephone, string Ville)
+        public async Task<IActionResult> ConfirmerCommande(
+            string AdresseLivraison, string Telephone, string Ville,
+            int PointsAUtiliser = 0)
         {
             var userId = _userManager.GetUserId(User);
 
-            // Récupérer le panier avec les produits
             var panier = await _context.Paniers
                 .Include(p => p.LignesPanier)
                 .ThenInclude(l => l.Produit)
@@ -58,7 +64,7 @@ namespace EcommerciApp.Controllers
             if (panier == null || !panier.LignesPanier.Any())
                 return RedirectToAction("Index", "Paniers");
 
-            // --- VÉRIFICATION DU STOCK ---
+            // Vérification du stock
             foreach (var item in panier.LignesPanier)
             {
                 if (item.Produit.Stock < item.Quantite)
@@ -66,6 +72,24 @@ namespace EcommerciApp.Controllers
                     TempData["Error"] = $"Stock insuffisant pour {item.Produit.Nom} (Disponible: {item.Produit.Stock})";
                     return RedirectToAction("Index", "Paniers");
                 }
+            }
+
+            var totalBrut = panier.LignesPanier.Sum(l => (l.PrixUnitaire ?? 0) * l.Quantite);
+
+            // ✅ Valider les points choisis
+            var user = await _userManager.FindByIdAsync(userId);
+            int pointsUtilises = 0;
+            decimal reduction = 0;
+
+            if (PointsAUtiliser >= 100
+                && PointsAUtiliser <= 500
+                && user.PointsFidelite >= PointsAUtiliser)
+            {
+                // Arrondir au multiple de 100 (sécurité)
+                pointsUtilises = (PointsAUtiliser / 100) * 100;
+                reduction = (pointsUtilises / 100) * 5m;
+                // La réduction ne dépasse pas le total
+                reduction = Math.Min(reduction, totalBrut);
             }
 
             var nouvelleCommande = new Commande
@@ -76,14 +100,15 @@ namespace EcommerciApp.Controllers
                 AdresseLivraison = AdresseLivraison,
                 Telephone = Telephone,
                 Ville = Ville,
-                Total = panier.LignesPanier.Sum(l => (l.PrixUnitaire ?? 0) * l.Quantite),
+                Total = totalBrut - reduction,
+                PointsUtilises = pointsUtilises,
+                Reduction = reduction,
                 IsRead = true,
                 LignesCommande = new List<LigneCommande>()
             };
 
             foreach (var item in panier.LignesPanier)
             {
-                // Ajout de la ligne de commande
                 nouvelleCommande.LignesCommande.Add(new LigneCommande
                 {
                     ProduitId = item.ProduitId,
@@ -91,33 +116,28 @@ namespace EcommerciApp.Controllers
                     PrixUnitaire = item.PrixUnitaire ?? 0,
                     SousTotal = (item.PrixUnitaire ?? 0) * item.Quantite
                 });
-
-                // DIMINUTION DU STOCK
                 item.Produit.Stock -= item.Quantite;
                 _context.Update(item.Produit);
             }
 
             _context.Commandes.Add(nouvelleCommande);
-
-            // Vider le panier
             _context.LignePaniers.RemoveRange(panier.LignesPanier);
-
             await _context.SaveChangesAsync();
 
-            // ✅ AJOUTER POINTS FIDÉLITÉ (1 DT = 1 point)
-            var user = await _userManager.FindByIdAsync(userId);
+            // ✅ Points fidélité : gagner + retirer
             if (user != null)
             {
                 var pointsGagnes = (int)Math.Floor(nouvelleCommande.Total);
                 user.PointsFidelite += pointsGagnes;
                 user.TotalPointsGagnes += pointsGagnes;
+                user.PointsFidelite -= pointsUtilises;
                 await _userManager.UpdateAsync(user);
             }
 
             return RedirectToAction("Confirmation", new { id = nouvelleCommande.Id });
         }
 
-        // 3. Page de succès après achat
+        // 3. Page de confirmation
         public async Task<IActionResult> Confirmation(int id)
         {
             var commande = await _context.Commandes
@@ -143,16 +163,14 @@ namespace EcommerciApp.Controllers
             if (nonLues.Any())
             {
                 foreach (var cmd in nonLues)
-                {
                     cmd.IsRead = true;
-                }
                 await _context.SaveChangesAsync();
             }
 
             return View(mesCommandes);
         }
 
-        // 5. Annuler la commande (Seulement si moins de 24h) + REMISE EN STOCK
+        // 5. Annuler la commande
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AnnulerCommande(int id)
@@ -166,31 +184,34 @@ namespace EcommerciApp.Controllers
 
             if (commande == null) return NotFound();
 
-            // Vérification du délai des 24h
             var tempsEcoule = DateTime.Now - commande.DateCommande;
             if (tempsEcoule.TotalHours > 24)
-            {
                 return BadRequest("Le délai d'annulation de 24h est dépassé.");
-            }
 
-            // Vérification du statut
             if (commande.Statut == "Livree")
-            {
                 return BadRequest("La commande a déjà été livrée.");
-            }
 
             if (commande.Statut == "Annulée" || commande.Statut == "Annulee")
-            {
                 return BadRequest("Cette commande est déjà annulée.");
-            }
 
-            // REMETTRE EN STOCK
+            // Remettre en stock
             foreach (var ligne in commande.LignesCommande)
             {
                 if (ligne.Produit != null)
                 {
                     ligne.Produit.Stock += ligne.Quantite;
                     _context.Update(ligne.Produit);
+                }
+            }
+
+            // ✅ Rembourser les points utilisés
+            if (commande.PointsUtilises > 0)
+            {
+                var user = await _userManager.FindByIdAsync(userId);
+                if (user != null)
+                {
+                    user.PointsFidelite += commande.PointsUtilises;
+                    await _userManager.UpdateAsync(user);
                 }
             }
 
@@ -220,9 +241,7 @@ namespace EcommerciApp.Controllers
             if (commande == null) return NotFound();
 
             if (commande.UtilisateurId != userId && !User.IsInRole("Admin"))
-            {
                 return Forbid();
-            }
 
             return View(commande);
         }
@@ -252,7 +271,6 @@ namespace EcommerciApp.Controllers
                 .FirstOrDefaultAsync(m => m.Id == id);
 
             if (commande == null) return NotFound();
-
             return View(commande);
         }
 

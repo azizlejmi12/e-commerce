@@ -255,3 +255,4 @@ C:\Users\ASUS\source\repos\EcommerciApp\EcommerciApp\bin\Debug\net8.0\tr\Microso
 C:\Users\ASUS\source\repos\EcommerciApp\EcommerciApp\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\ASUS\source\repos\EcommerciApp\EcommerciApp\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\ASUS\source\repos\EcommerciApp\EcommerciApp\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\ASUS\source\repos\EcommerciApp\EcommerciApp\obj\Debug\net8.0\EcommerciApp.sourcelink.json

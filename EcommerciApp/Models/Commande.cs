@@ -12,6 +12,9 @@
         public string AdresseLivraison { get; set; }
         public bool IsRead { get; set; } = true;
 
+        public int PointsUtilises { get; set; } = 0;
+        public decimal Reduction { get; set; } = 0;
+
         // Navigation
         public Utilisateur Utilisateur { get; set; }
         
