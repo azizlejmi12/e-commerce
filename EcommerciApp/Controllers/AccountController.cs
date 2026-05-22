@@ -27,7 +27,6 @@ namespace EcommerciApp.Controllers
         public async Task<IActionResult> Login(string Email, string Password, bool RememberMe)
         {
             var user = await _userManager.FindByEmailAsync(Email);
-
             if (user == null)
             {
                 TempData["EmailError"] = "Cet email n'est pas associé à un compte.";
@@ -36,7 +35,6 @@ namespace EcommerciApp.Controllers
             }
 
             var result = await _signInManager.PasswordSignInAsync(user, Password, RememberMe, false);
-
             if (!result.Succeeded)
             {
                 TempData["PasswordError"] = "Le mot de passe est incorrect.";
@@ -48,11 +46,42 @@ namespace EcommerciApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(string Nom, string Prenom, string Email, string Password, string ConfirmPassword)
+        public async Task<IActionResult> Register(
+            string Nom, string Prenom, string Email,
+            string Password, string ConfirmPassword)
         {
+            // ✅ Confirmation
             if (Password != ConfirmPassword)
             {
                 TempData["RegisterError"] = "Les mots de passe ne correspondent pas.";
+                return RedirectToAction("Index", new { register = 1 });
+            }
+
+            // ✅ Longueur minimum
+            if (Password.Length < 8)
+            {
+                TempData["RegisterError"] = "Le mot de passe doit contenir au moins 8 caractères.";
+                return RedirectToAction("Index", new { register = 1 });
+            }
+
+            // ✅ Majuscule
+            if (!Password.Any(char.IsUpper))
+            {
+                TempData["RegisterError"] = "Le mot de passe doit contenir au moins une majuscule.";
+                return RedirectToAction("Index", new { register = 1 });
+            }
+
+            // ✅ Chiffre
+            if (!Password.Any(char.IsDigit))
+            {
+                TempData["RegisterError"] = "Le mot de passe doit contenir au moins un chiffre.";
+                return RedirectToAction("Index", new { register = 1 });
+            }
+
+            // ✅ Caractère spécial
+            if (!Password.Any(c => "!@#$%^&*(),.?\":{}|<>".Contains(c)))
+            {
+                TempData["RegisterError"] = "Le mot de passe doit contenir au moins un caractère spécial.";
                 return RedirectToAction("Index", new { register = 1 });
             }
 
@@ -68,7 +97,6 @@ namespace EcommerciApp.Controllers
             };
 
             var result = await _userManager.CreateAsync(user, Password);
-
             if (result.Succeeded)
             {
                 await _userManager.AddToRoleAsync(user, "Client");
@@ -85,9 +113,7 @@ namespace EcommerciApp.Controllers
         {
             var userId = _userManager.GetUserId(User);
             var user = await _userManager.FindByIdAsync(userId);
-
             if (user == null) return NotFound();
-
             return View("~/Views/Compte/Profil.cshtml", user);
         }
 

@@ -56,7 +56,6 @@
             color: white;
         }
 
-    /* Styles pour les erreurs */
     .alert-error {
         background: #fee2e2;
         border-left: 4px solid #ef4444;
@@ -85,6 +84,20 @@
         align-items: center;
         gap: 0.25rem;
     }
+
+    /* ✅ Bouton œil sans bordure visible */
+    .btn-eye {
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-left: none;
+        cursor: pointer;
+        padding: 0 12px;
+        color: #6c757d;
+    }
+
+        .btn-eye:hover {
+            color: var(--primary-color);
+        }
 </style>
 
 <div class="container mt-5">
@@ -100,12 +113,16 @@
                     <!-- Onglets -->
                     <ul class="nav nav-pills nav-justified mb-4" id="authTab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link active rounded-pill py-2" id="login-tab" data-bs-toggle="pill" data-bs-target="#login" type="button" role="tab">
+                            <button class="nav-link active rounded-pill py-2" id="login-tab"
+                                    data-bs-toggle="pill" data-bs-target="#login"
+                                    type="button" role="tab">
                                 <i class="bi bi-box-arrow-in-right me-1"></i>Connexion
                             </button>
                         </li>
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link rounded-pill py-2" id="register-tab" data-bs-toggle="pill" data-bs-target="#register" type="button" role="tab">
+                            <button class="nav-link rounded-pill py-2" id="register-tab"
+                                    data-bs-toggle="pill" data-bs-target="#register"
+                                    type="button" role="tab">
                                 <i class="bi bi-person-plus me-1"></i>Inscription
                             </button>
                         </li>
@@ -113,9 +130,11 @@
 
                     <div class="tab-content" id="authTabContent">
 
-                        <!-- LOGIN -->
+                        <!-- ======================== -->
+                        <!-- LOGIN                   -->
+                        <!-- ======================== -->
                         <div class="tab-pane fade show active" id="login" role="tabpanel">
-                            <!-- Message d'erreur global -->
+
                             @if (TempData["EmailError"] != null || TempData["PasswordError"] != null)
                             {
                                 <div class="alert-error">
@@ -128,7 +147,9 @@
                                 <div class="mb-3">
                                     <label class="form-label fw-bold text-secondary">Email</label>
                                     <div class="input-group">
-                                        <span class="input-group-text bg-light"><i class="bi bi-envelope text-primary"></i></span>
+                                        <span class="input-group-text bg-light">
+                                            <i class="bi bi-envelope text-primary"></i>
+                                        </span>
                                         <input type="email" name="Email"
                                                class="form-control form-control-lg @(TempData["EmailError"] != null ? "input-error" : "")"
                                                placeholder="exemple@email.com"
@@ -143,14 +164,22 @@
                                         </span>
                                     }
                                 </div>
+
                                 <div class="mb-3">
                                     <label class="form-label fw-bold text-secondary">Mot de passe</label>
                                     <div class="input-group">
-                                        <span class="input-group-text bg-light"><i class="bi bi-lock text-primary"></i></span>
-                                        <input type="password" name="Password"
+                                        <span class="input-group-text bg-light">
+                                            <i class="bi bi-lock text-primary"></i>
+                                        </span>
+                                        <input type="password" name="Password" id="PasswordLogin"
                                                class="form-control form-control-lg @(TempData["PasswordError"] != null ? "input-error" : "")"
                                                placeholder="••••••"
                                                required />
+                                        <!-- ✅ Bouton afficher/masquer -->
+                                        <button type="button" class="btn-eye"
+                                                onclick="togglePassword('PasswordLogin', this)">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
                                     </div>
                                     @if (TempData["PasswordError"] != null)
                                     {
@@ -160,18 +189,26 @@
                                         </span>
                                     }
                                 </div>
+
                                 <div class="mb-4 form-check">
-                                    <input type="checkbox" name="RememberMe" class="form-check-input" id="rememberMe" />
-                                    <label class="form-check-label text-secondary" for="rememberMe">Se souvenir de moi</label>
+                                    <input type="checkbox" name="RememberMe"
+                                           class="form-check-input" id="rememberMe" />
+                                    <label class="form-check-label text-secondary" for="rememberMe">
+                                        Se souvenir de moi
+                                    </label>
                                 </div>
+
                                 <button type="submit" class="btn btn-auth w-100 btn-lg rounded-pill">
                                     <i class="bi bi-box-arrow-in-right me-2"></i>Se connecter
                                 </button>
                             </form>
                         </div>
 
-                        <!-- REGISTER -->
+                        <!-- ======================== -->
+                        <!-- REGISTER               -->
+                        <!-- ======================== -->
                         <div class="tab-pane fade" id="register" role="tabpanel">
+
                             @if (TempData["RegisterError"] != null)
                             {
                                 <div class="alert-error">
@@ -185,39 +222,90 @@
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label fw-bold text-secondary">Nom</label>
                                         <div class="input-group">
-                                            <span class="input-group-text bg-light"><i class="bi bi-person text-primary"></i></span>
-                                            <input type="text" name="Nom" class="form-control" placeholder="Votre nom" required />
+                                            <span class="input-group-text bg-light">
+                                                <i class="bi bi-person text-primary"></i>
+                                            </span>
+                                            <input type="text" name="Nom" class="form-control"
+                                                   placeholder="Votre nom" required />
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label fw-bold text-secondary">Prénom</label>
                                         <div class="input-group">
-                                            <span class="input-group-text bg-light"><i class="bi bi-person text-primary"></i></span>
-                                            <input type="text" name="Prenom" class="form-control" placeholder="Votre prénom" required />
+                                            <span class="input-group-text bg-light">
+                                                <i class="bi bi-person text-primary"></i>
+                                            </span>
+                                            <input type="text" name="Prenom" class="form-control"
+                                                   placeholder="Votre prénom" required />
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="mb-3">
                                     <label class="form-label fw-bold text-secondary">Email</label>
                                     <div class="input-group">
-                                        <span class="input-group-text bg-light"><i class="bi bi-envelope text-primary"></i></span>
-                                        <input type="email" name="Email" class="form-control" placeholder="exemple@email.com" required />
+                                        <span class="input-group-text bg-light">
+                                            <i class="bi bi-envelope text-primary"></i>
+                                        </span>
+                                        <input type="email" name="Email" class="form-control"
+                                               placeholder="exemple@email.com" required />
                                     </div>
                                 </div>
+
+                                <!-- Mot de passe avec validation -->
                                 <div class="mb-3">
                                     <label class="form-label fw-bold text-secondary">Mot de passe</label>
                                     <div class="input-group">
-                                        <span class="input-group-text bg-light"><i class="bi bi-lock text-primary"></i></span>
-                                        <input type="password" name="Password" class="form-control" placeholder="••••••" required />
+                                        <span class="input-group-text bg-light">
+                                            <i class="bi bi-lock text-primary"></i>
+                                        </span>
+                                        <input type="password" name="Password" id="Password"
+                                               class="form-control" placeholder="••••••"
+                                               required minlength="8"
+                                               oninput="verifierMotDePasse(this.value)" />
+                                        <!-- ✅ Bouton afficher/masquer -->
+                                        <button type="button" class="btn-eye"
+                                                onclick="togglePassword('Password', this)">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
                                     </div>
+
+                                    <!-- Barre de force -->
+                                    <div class="progress mt-2" style="height: 6px;">
+                                        <div id="barreForce" class="progress-bar"
+                                             style="width: 0%; transition: all 0.3s;"></div>
+                                    </div>
+
+                                    <!-- Règles -->
+                                    <ul class="list-unstyled mt-2 small">
+                                        <li id="r-longueur">❌ Minimum 8 caractères</li>
+                                        <li id="r-majuscule">❌ Au moins une majuscule</li>
+                                        <li id="r-chiffre">❌ Au moins un chiffre</li>
+                                        <li id="r-special">❌ Au moins un caractère spécial</li>
+                                    </ul>
                                 </div>
+
+                                <!-- Confirmation mot de passe -->
                                 <div class="mb-4">
-                                    <label class="form-label fw-bold text-secondary">Confirmer le mot de passe</label>
+                                    <label class="form-label fw-bold text-secondary">
+                                        Confirmer le mot de passe
+                                    </label>
                                     <div class="input-group">
-                                        <span class="input-group-text bg-light"><i class="bi bi-lock-fill text-primary"></i></span>
-                                        <input type="password" name="ConfirmPassword" class="form-control" placeholder="••••••" required />
+                                        <span class="input-group-text bg-light">
+                                            <i class="bi bi-lock-fill text-primary"></i>
+                                        </span>
+                                        <input type="password" name="ConfirmPassword" id="ConfirmPassword"
+                                               class="form-control" placeholder="••••••"
+                                               required oninput="verifierConfirmation()" />
+                                        <!-- ✅ Bouton afficher/masquer -->
+                                        <button type="button" class="btn-eye"
+                                                onclick="togglePassword('ConfirmPassword', this)">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
                                     </div>
+                                    <span id="msgConfirmation" class="small"></span>
                                 </div>
+
                                 <button type="submit" class="btn btn-success-auth w-100 btn-lg rounded-pill">
                                     <i class="bi bi-person-plus me-2"></i>S'inscrire
                                 </button>
@@ -233,11 +321,83 @@
 
 @section Scripts {
     <script>
-        const urlParams = new URLSearchParams(window.location.search);
+        // Redirection vers onglet inscription
+        var urlParams = new URLSearchParams(window.location.search);
         if (urlParams.get('register') === '1') {
-            const registerTab = document.getElementById('register-tab');
-            if (registerTab) {
-                registerTab.click();
+            var registerTab = document.getElementById('register-tab');
+            if (registerTab) registerTab.click();
+        }
+
+        var specialChars = '!$%^&*()-_=+[]{};\':,.<>?/\\|`~';
+
+        // ✅ Afficher / Masquer mot de passe
+        function togglePassword(inputId, btn) {
+            var input = document.getElementById(inputId);
+            var icon  = btn.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('bi-eye');
+                icon.classList.add('bi-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('bi-eye-slash');
+                icon.classList.add('bi-eye');
+            }
+        }
+
+        // ✅ Vérification mot de passe en temps réel
+        function verifierMotDePasse(valeur) {
+            var longueur  = valeur.length >= 8;
+            var majuscule = /[A-Z]/.test(valeur);
+            var chiffre   = /[0-9]/.test(valeur);
+            var special   = false;
+            for (var i = 0; i < valeur.length; i++) {
+                if (specialChars.indexOf(valeur[i]) !== -1) {
+                    special = true;
+                    break;
+                }
+            }
+
+            majAfficher('r-longueur',  longueur,  'Minimum 8 caractères');
+            majAfficher('r-majuscule', majuscule, 'Au moins une majuscule');
+            majAfficher('r-chiffre',   chiffre,   'Au moins un chiffre');
+            majAfficher('r-special',   special,   'Au moins un caractère spécial');
+
+            var score = [longueur, majuscule, chiffre, special].filter(Boolean).length;
+            var barre = document.getElementById('barreForce');
+            var configs = {
+                0: { width: '0%',   color: ''           },
+                1: { width: '25%',  color: 'bg-danger'  },
+                2: { width: '50%',  color: 'bg-warning' },
+                3: { width: '75%',  color: 'bg-info'    },
+                4: { width: '100%', color: 'bg-success' }
+            };
+            barre.className = 'progress-bar ' + configs[score].color;
+            barre.style.width = configs[score].width;
+
+            verifierConfirmation();
+        }
+
+        function majAfficher(id, valide, texte) {
+            var el = document.getElementById(id);
+            el.innerHTML = (valide ? '✅ ' : '❌ ') + texte;
+            el.style.color = valide ? 'green' : 'red';
+        }
+
+        // ✅ Vérification confirmation mot de passe
+        function verifierConfirmation() {
+            var pwd     = document.getElementById('Password').value;
+            var confirm = document.getElementById('ConfirmPassword').value;
+            var msg     = document.getElementById('msgConfirmation');
+
+            if (confirm === '') { msg.innerHTML = ''; return; }
+
+            if (pwd === confirm) {
+                msg.innerHTML = '✅ Les mots de passe correspondent';
+                msg.style.color = 'green';
+            } else {
+                msg.innerHTML = '❌ Les mots de passe ne correspondent pas';
+                msg.style.color = 'red';
             }
         }
     </script>
